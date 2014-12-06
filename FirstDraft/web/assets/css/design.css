@@ -2,7 +2,7 @@
 
 .title {
 	font-family: 'Bitter', serif;
-	font-size: 48px;
+	font-size: 2.5em;
 }
 
 #top {
@@ -28,5 +28,40 @@ footer {
 
 body {
 	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 22px;
 	/*background-image: url('/FirstDraft/web/assets/img/footer_lodyas.png');*/
+}
+
+/* INPUTS */	
+
+input{
+   text-align:center;
+}
+
+input[type=text] {
+	font-size: 0.9em;
+	height: 2em;
+}
+
+input[type=checkbox] {
+	outline: none;
+	border: none;
+	background: transparent;
+
+}
+
+.radio label {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#optionButtons {
+	margin-bottom: 25px;
+}
+
+#optionButtons button, #submitRequest {
+	margin-bottom: 10px;
+	width: 100%;
+	white-space: normal;
+	font-size: 1em;
 }
