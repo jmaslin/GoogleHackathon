@@ -2,6 +2,7 @@
 
 <html lang="en">
 	<head>
+
 		<title>GoogleHack4</title>
 
 		<script src="assets/js/jquery-2.1.1.min.js"></script>
@@ -71,7 +72,7 @@
   						</div>
   						<!-- TODO: Make this better. All of it. -->
   						<br>
-  						<!-- <div class="form-group">
+  						<!--<div class="form-group">
   							<label for="request">Password (Optional, create an account to manage requests.)</label>
   							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
   						  <input type="password" class="form-control" name="passwordConf" id="passwordConf" placeholder="Password Confirm">			
@@ -167,7 +168,7 @@
 
 			request = $('#requestType').val();
 
-			if (request != "") {
+			if (request !== "") {
 				validReq = true;
 			}
 
@@ -182,20 +183,23 @@
         "locLng": locLng, 
         "contactPhone": $('#contactPhone').val(), 
         "contactEmail": $('#contactEmail').val()
-      }
+      };
 
 			$.ajax({
 				type: "post", 
-<<<<<<< HEAD
+
 				url: "MatchServlet",      
 				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
-=======
-				url: "MatchServlet.java",      
-				data: userData, 
->>>>>>> origin/dev
+//
+//				url: "MatchServlet.java",      
+//				data: userData, 
+
 				dataType: "html", 
 				success: function(data) {
-				}
+				},
+                                error: function(data){
+                                    alert(data);
+                                }
 
 			});
 		}

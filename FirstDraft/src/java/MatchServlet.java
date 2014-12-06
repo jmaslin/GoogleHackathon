@@ -38,6 +38,7 @@ public class MatchServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
         //System.out.println("Hello");
+         //   res.setContentType("application/json;charset=UTF-8");
             String id = req.getParameter("rowID");
             
             String action = req.getParameter("purposeRadio");
@@ -45,6 +46,8 @@ public class MatchServlet extends HttpServlet {
             String locLat = req.getParameter("locLat"); 
             String locLng = req.getParameter("locLng"); 
             String contact = req.getParameter("contactPhone");
+            String loc = req.getParameter("locLng");
+            String lat = req.getParameter("locLat");
             
         try {
            ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact);
@@ -58,9 +61,9 @@ public class MatchServlet extends HttpServlet {
             Logger.getLogger(MatchServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("My bad");
         }
-            System.out.println(action);
+            System.out.println(loc);
             System.out.println(Alg.AlgUtil.ALG.list.get(0).size());
-           // res.sendRedirect(res.encodeRedirectURL("index.html"));
+            res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
     public void email(String number, String email, String messageText, String keyword){
