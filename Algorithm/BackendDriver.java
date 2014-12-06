@@ -4,9 +4,6 @@
 package hackathon.google.nyc;
 
 import java.awt.geom.Point2D;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +16,7 @@ import java.util.PriorityQueue;
 public class BackendDriver {
 
 	ArrayList<HashMap<String, PriorityQueue<ComparableRequestQuery>>> list;
-	double maxDist = 200; //Km
+	double maxDist = 50; //Km
 	
 	public BackendDriver(){
 		list = new ArrayList<HashMap<String, PriorityQueue<ComparableRequestQuery>>>();
@@ -34,16 +31,10 @@ public class BackendDriver {
 	 * @param keyword The keyword of the query
 	 * @param location The location of the query
 	 * @param maxDist The max distance the querier is willing to respond
-	 * @throws IOException 
 	 */
-	public ComparableRequestQuery newQuery(String type, String keyword,Point2D.Double coord, String name,String number, String email) throws InvalidKeyException, IOException{
-		ComparableRequestQuery rq = new ComparableRequestQuery(type,keyword,coord,name,number,email);
+	public ComparableRequestQuery newQuery(String type, String keyword,Point2D.Double coord, String name) throws InvalidKeyException{
+		ComparableRequestQuery rq = new ComparableRequestQuery(type,keyword,coord,name);
 		ComparableRequestQuery foundQuery = null;
-
-		JsonThesaurus list2 = new JsonThesaurus();
-		ArrayList<String> thes = list2.thesaurus(keyword);
-		
-		thes.add(keyword);
 		
 		int id = 0;
 		int other = 1;
@@ -59,14 +50,6 @@ public class BackendDriver {
 		default:
 				throw new InvalidKeyException();
 		}
-	
-		for(int i = 0; i < thes.size();i++){
-			if(list.get(id).containsKey(thes.get(i))||list.get(other).containsKey(thes.get(i))){
-				keyword = thes.get(i);
-				i = thes.size();
-			}
-		}
-		
 		
 		if(list.get(other).containsKey(keyword)){  //if opposite type is found			
 			list.get(other).put(keyword, updateDistance(list.get(other).get(keyword),coord));			//update distances of other type
@@ -92,6 +75,7 @@ public class BackendDriver {
 	 * @param id The type of the query
 	 */
 	private void doesntExist(ComparableRequestQuery rq, String keyword, int id){
+		//System.out.println(rq.toString());
 		if (list.get(id).get(keyword) != null){
 			list.get(id).get(keyword).add(rq);
 		}else {
