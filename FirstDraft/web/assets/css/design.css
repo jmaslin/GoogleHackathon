@@ -1,5 +1,10 @@
 /* TOP OF PAGE */
 
+.title {
+	font-family: 'Bitter', serif;
+	font-size: 48px;
+}
+
 #top {
 	margin-bottom: 25px;
 }
@@ -7,7 +12,7 @@
 /* BOTTOM OF PAGE */
 
 #footerContiner {
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 }
 
 footer {
@@ -22,5 +27,6 @@ footer {
 }
 
 body {
-	background-image: url('/FirstDraft/web/assets/img/footer_lodyas.png');
+	font-family: 'Source Sans Pro', sans-serif;
+	/*background-image: url('/FirstDraft/web/assets/img/footer_lodyas.png');*/
 }

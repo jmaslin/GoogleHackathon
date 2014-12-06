@@ -35,6 +35,10 @@
   				<br>
 
           <form id="submitReq">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="userName" id="userName" autocomplete="off" placeholder="What is your name.">
+              </div>
   					  <div class="form-group">
     						<label for="purpose">Purpose</label>
     						<div class="radio">
@@ -176,6 +180,7 @@
 		function submitToJSON() {
 
       var userData = {
+        "name": $('#userName').val(), 
         "purpose": $('[name=purposeRadio]').val(), 
         "request": $('#requestType').val(), 
         "locLat": locLat, 
