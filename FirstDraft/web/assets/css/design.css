@@ -4,10 +4,25 @@
 	margin-bottom: 25px;
 }
 
+#topContainer {
+	margin-top: 25px;
+}
+
 
 /* BOTTOM OF PAGE */
 
 footer {
 	margin-top: 100px;
+	color: white;
 }
 
+
+/* PAGE */
+
+.container-fluid {
+	background: rgba(255, 255, 255, 1);
+}
+
+body {
+	background-image: url('/FirstDraft/web/assets/img/footer_lodyas.png');
+}
