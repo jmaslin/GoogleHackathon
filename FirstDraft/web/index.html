@@ -169,10 +169,10 @@
 
 		function submitToJSON() {
 			$.ajax({
-				type: "post", 
-				url: "/FirstDraft/src/java/MatchServlet.java",       // ../src/java/
+				type: "POST", 
+				url: "MatchServlet",       // ../src/java/
 				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
-				dataType: "json", 
+				dataType: "html", 
 				success: function(data) {
 
 				}
