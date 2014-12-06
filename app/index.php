@@ -30,44 +30,103 @@
 							<label for="purpose">Purpose</label>
 							<div class="radio">
 								<label>
-									<input type="radio" name="purposeRadio" id="purpose1">
+									<input type="radio" name="purposeRadio" id="purpose1" value="1">
 									I want
 								</label>
 								<label>
-									<input type="radio" name="purposeRadio" id="purpose2">
+									<input type="radio" name="purposeRadio" id="purpose2" value="2">
 									I have
 								</label>
 						</div>
 						<div class="form-group">
 							<label for="request">Request</label>
-							<input type="text" class="form-control" id="requestType" placeholder="Enter what you want or need">
+							<input type="text" class="form-control" name="requestType" id="requestType" autocomplete="off" placeholder="Enter what you have or need.">
+						</div>
+						<div class="form-group">
+							<label for="location">Location</label>
+							<input type="text" class="form-control" name="location" id="location" autocomplete="off" placeholder="Enter your general location.">
 						</div>
 						<label for="contact">Contact Method(s)</label>
 						<div class="input-group">
 							<span class="input-group-addon">
-								<input type="checkbox">
+								<input id="emailCheck" type="checkbox">
 							</span>
-							<input type="text" class="form-control" id="contactEmail" placeholder="Email">
+							<input type="text" class="form-control" name="contactEmail" id="contactEmail" autocomplete="off" placeholder="Email">
 						</div>
 						<div class="input-group">
 							<span class="input-group-addon">
-								<input type="checkbox">
+								<input id="phoneCheck" type="checkbox">
 							</span>
-							<input type="text" class="form-control" id="contactPhone" placeholder="Phone">
+							<input type="text" class="form-control" name="contactPhone" id="contactPhone" autocomplete="off" placeholder="Phone">
 						</div>
 						<!-- TODO: Make this better. All of it. -->
 						<br />
 						<div class="form-group">
 							<label for="request">Password (Optional, create an account to manage requests.)</label>
-							<input type="password" class="form-control" id="password" placeholder="Password">
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
 							<!-- TODO: Hide this until someone types in above field. -->
-							<input type="password" class="form-control" id="passwordConf" placeholder="Password Confirm">						
+							<input type="password" class="form-control" name="passwordConf" id="passwordConf" placeholder="Password Confirm">						
 						</div>
-					</form>
+     	  		<button id="submitRequest" type="submit" class="btn btn-default">Submit</button>
+     			</form>
 
 			</div>
 		</div>
 
 	</div>
+
+	<script type="text/javascript">
+
+		$('#submitRequest').on("click", function(e) {
+			e.preventDefault(); // Got to error validates the datas firsts
+
+			if (validateInput()) {
+				submitToJSON(); // Now our Java friends can do stuff
+			}
+
+		});
+
+
+		function validateInput() {
+			// Limited error checking because will be checked in backend.
+
+			if (validateRequest()) {
+				if ($('#emailCheck').attr('checked')) {
+					validateEmail();
+				}
+			}
+
+
+
+			return false;
+		}
+
+		// TODO: Dropdown/Suggestions from common requests.
+		function validateRequest() {
+
+			validateRequest = false;
+
+			request = $('#requestType').val();
+
+			if (request != "") {
+				validateRequest = true;
+			}
+		}
+
+		function submitToJSON() {
+
+			$.ajax({
+				type: "POST", 
+				url: "process/test.php", 
+				data: $('#submitReq').serialize(), 
+				dataType: "json", 
+				success: function(data) {
+
+				}
+
+			});
+		}
+
+	</script>
 
 <?php include "views/footer.php"; ?>
