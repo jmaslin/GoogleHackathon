@@ -26,7 +26,8 @@ public class MatchServlet extends HttpServlet {
         //System.out.println("Hello");
             String action = req.getParameter("purposeRadio");
             String item = req.getParameter("requestType");
-            String loc = req.getParameter("location");
+            String locLat = req.getParameter("locLat");
+            String locLng = req.getParameter("locLng");
             String contact = req.getParameter("contactPhone");
             
             
