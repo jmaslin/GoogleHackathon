@@ -174,13 +174,8 @@
 		function submitToJSON() {
       console.log("Hi");
 			$.ajax({
-<<<<<<< HEAD
 				type: "post", 
-				url: "/FirstDraft/src/java/MatchServlet.j",       // ../src/java/
-=======
-				type: "POST", 
-				url: "MatchServlet",       // ../src/java/
->>>>>>> cb960080742fcc6c9d60783573abb54224b581f9
+				url: "/FirstDraft/src/java/MatchServlet.java",      
 				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
 				dataType: "html", 
 				success: function(data) {
