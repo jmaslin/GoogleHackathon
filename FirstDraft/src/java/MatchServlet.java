@@ -28,6 +28,8 @@ public class MatchServlet extends HttpServlet {
             String item = req.getParameter("requestType");
             String loc = req.getParameter("location");
             String contact = req.getParameter("contactPhone");
+            
+            
             System.out.println(action);
             res.sendRedirect(res.encodeRedirectURL("index.html"));
 
