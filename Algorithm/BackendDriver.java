@@ -27,23 +27,23 @@ public class BackendDriver {
 	/**
 	 * Method to respond to a service or request
 	 * 
-	 * @param t The type of the query
+	 * @param type The type of the query
 	 * @param keyword The keyword of the query
 	 * @param location The location of the query
 	 * @param maxDist The max distance the querier is willing to respond
 	 */
-	public ComparableRequestQuery newQuery(String t, String keyword,Point2D.Double coord, String name) throws InvalidKeyException{
-		ComparableRequestQuery rq = new ComparableRequestQuery(t,keyword,coord,name);
+	public ComparableRequestQuery newQuery(String type, String keyword,Point2D.Double coord, String name) throws InvalidKeyException{
+		ComparableRequestQuery rq = new ComparableRequestQuery(type,keyword,coord,name);
 		ComparableRequestQuery foundQuery = null;
 		
 		int id = 0;
 		int other = 1;
-		switch(t){
-		case "2": 
+		switch(type){
+		case "2": 			//service
 			id = 1;
 			other = 0;
 			break;
-		case "1":
+		case "1":			//request
 			id = 0;
 			other = 1;
 			break;
@@ -128,11 +128,8 @@ public class BackendDriver {
 		double c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1.0-a));
 
 		double d = R * c;
-		//System.out.println(d);
 		return d;
-		
-		//return Math.random()*100; // Really accurate distance calculator
-	}
+		}
 	
 
 
