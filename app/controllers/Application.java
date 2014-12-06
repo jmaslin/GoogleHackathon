@@ -14,4 +14,10 @@ public class Application extends Controller {
       return ok(index.render(pageName)); // Runs the index.scala.html page
     }
 
+    public static Result query(String id) {
+
+    	return ok(query.render(id));
+
+    }
+
 }
