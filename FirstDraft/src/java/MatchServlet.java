@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Alg.ComparableRequestQuery;
 import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -44,7 +45,11 @@ public class MatchServlet extends HttpServlet {
             String contact = req.getParameter("contactPhone");
             
         try {
-            Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact);
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact);
+           if (t != null){
+               //sent stuff
+               email();
+           }
         } catch (InvalidKeyException ex) {
             Logger.getLogger(MatchServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("My bad");
