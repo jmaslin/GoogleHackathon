@@ -12,6 +12,10 @@
 
 		<!-- CUSTOM -->
 		<link href="assets/css/design.css" rel="stylesheet" />
+
+    <!-- FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro|Ubuntu\Bitter' rel='stylesheet' type='text/css'>
+
 	</head>
 
 	<body>
@@ -20,7 +24,7 @@
 
   		<div id="top" class="row-fluid text-center">
   			<div class="col-sm-6 col-sm-offset-3">
-  				<h1>GoodsX<br /><small>Connecting people <em>the smart way.</em></small></h1>
+  				<h1 class="title">GoodsX<br /><small>Connecting people <em>the smart way.</em></small></h1>
   				<hr>
   			</div>
   		</div>
@@ -78,10 +82,6 @@
   			</div>
   		</div>
 
-  	</div>
-
-
-    <div class="container-fluid">
       <div class="row-fluid text-center">
         <div class="col-sm-6 col-sm-offset-3">
           <footer>
@@ -89,7 +89,9 @@
           </footer>
         </div>
       </div>
-    </div>
+
+  	</div>
+
 
   </body>
 </html>
@@ -172,11 +174,20 @@
 		}
 
 		function submitToJSON() {
-      console.log("Hi");
+
+      var userData = {
+        "purpose": $('[name=purposeRadio]').val(), 
+        "request": $('#requestType').val(), 
+        "locLat": locLat, 
+        "locLng": locLng, 
+        "contactPhone": $('#contactPhone').val(), 
+        "contactEmail": $('#contactEmail').val()
+      }
+
 			$.ajax({
 				type: "post", 
 				url: "/FirstDraft/src/java/MatchServlet.java",      
-				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
+				data: userData, 
 				dataType: "html", 
 				success: function(data) {
 				}
