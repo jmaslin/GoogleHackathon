@@ -92,7 +92,6 @@
 
   	</div>
 
-
   </body>
 </html>
 
@@ -101,8 +100,8 @@
 
     $( document ).ready(function() {
 
-      var locLat = "0";
-      var locLng = "0";
+      var locLat = "";
+      var locLng = "";
     });
 
   	$('#submitRequest').on("click", function(e) {
@@ -174,33 +173,21 @@
 		}
 
 		function submitToJSON() {
-
-      var userData = {
-        "purpose": $('[name=purposeRadio]').val(), 
-        "request": $('#requestType').val(), 
-        "locLat": locLat, 
-        "locLng": locLng, 
-        "contactPhone": $('#contactPhone').val(), 
-        "contactEmail": $('#contactEmail').val()
-      }
-
+      // ../src/java/
 			$.ajax({
-				type: "post", 
-<<<<<<< HEAD
-				url: "MatchServlet",      
+				type: "POST", 
+				url: "MatchServlet.java", 
 				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
-=======
-				url: "MatchServlet.java",      
-				data: userData, 
->>>>>>> origin/dev
 				dataType: "html", 
 				success: function(data) {
+
 				}
 
 			});
 		}
 
 	</script>
+
 
 
         <!-- Formatting:
