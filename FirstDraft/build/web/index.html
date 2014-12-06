@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/dev
 <html lang="en">
 	<head>
 		<title>GoogleHack</title>
 
+<<<<<<< HEAD
 		<script src="/FirstDraft/web/assets/js/jquery-2.1.1.min.js"></script>
 
 		<!-- BOOTSTRAP -->
@@ -10,11 +15,25 @@
 
 		<!-- CUSTOM -->
 		<link href="/FirstDraft/web/assets/css/design.css" rel="stylesheet" />
+=======
+		<script src="/assets/js/jquery-2.1.1.min.js"></script>
+
+		<!-- BOOTSTRAP -->
+		<link href="/assets/css/bootstrap.css" rel="stylesheet" />
+		<script src="/assets/js/bootstrap.js"></script>
+
+		<!-- CUSTOM -->
+		<link href="/assets/css/design.css" rel="stylesheet" />
+>>>>>>> origin/dev
 
 	</head>
 	<body>
 
 	<!-- INCLUDE PAGE CONTENT. -->
+<<<<<<< HEAD
+=======
+        <?php include "views/header.php"; ?>
+>>>>>>> origin/dev
 
 	<div class="container-fluid">
 
@@ -29,6 +48,19 @@
 			<div class="col-sm-6 col-sm-offset-3">
 				<h2>Choose some options.</h2>
 				<br />
+<<<<<<< HEAD
+=======
+
+				<!-- Formatting:
+
+				- Have user enter location
+				- Determine if requests exist near location + dispaly
+				- Allow user to enter own request
+				- Determine length of time or urgency
+				- Submit request to db
+
+				 -->
+>>>>>>> origin/dev
 				<!-- TODO: LOG IN BUTTON -->
 
 					<!-- Request: Either buying or selling. What it is. Location. Email or phone, but have one. -->
@@ -40,8 +72,13 @@
 						<!-- Field Three Part Two: PHONE (Optional) -->
 					<!-- FIELD Four: PASSWORD (Optional, used to make account to manage requests.) -->
 
+<<<<<<< HEAD
 					<form id="submitReq" role="form" action="process/run.jsp">
 
+=======
+				<!--	<form id="submitReq" role="form" action="process/run.jsp"> -->
+                                        <form id="submitReq" action="MatchServlet" method="Post"> 
+>>>>>>> origin/dev
 						<div class="form-group">
 							<label for="purpose">Purpose</label>
 							<div class="radio">
@@ -102,6 +139,46 @@
 
 		});
 
+<<<<<<< HEAD
+=======
+		$('#location').on('change', function() {
+
+			// e.preventDefault();
+			console.log("Test");
+
+			var location = $('#location').val();
+			console.log(location);
+
+			$.ajax({
+				type: "get", 
+				url: "https://maps.googleapis.com/maps/api/geocode/json", 
+				data: "key=AIzaSyC3Pl0tPmMQj5vTWSG5hzZduffke73rvpY&address="+location, 
+				dataType: "json", 
+				success: function(data) {
+					console.log(data);
+				}
+			});
+
+		});
+
+		function getAddress() {
+
+			location = $('#location').val();
+			console.log(location);
+			// $.ajax({
+			// 	type: "get", 
+			// 	url: "http://maps.googleapis.com/maps/api/geocode/output", 
+			// 	data: "key=AIzaSyC3Pl0tPmMQj5vTWSG5hzZduffke73rvpY&address="+location, 
+			// 	dataType: "json", 
+			// 	success: function(data) {
+			// 		console.log(data);
+			// 	}
+			// });
+
+			// return false;
+		}
+
+>>>>>>> origin/dev
 
 		function validateInput() {
 			// Limited error checking because will be checked in backend.
@@ -142,6 +219,10 @@
 
 	</script>
 
+<<<<<<< HEAD
+=======
+<?php include "views/footer.php"; ?>
+>>>>>>> origin/dev
 
 	<!-- END PAGE CONTENT -->
 
@@ -155,4 +236,8 @@
 	</footer>
 
 	</body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> origin/dev

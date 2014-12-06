@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
     <servlet>
-        <servlet-name>TableServlet</servlet-name>
-        <servlet-class>TableServlet</servlet-class>
+        <servlet-name>MatchServlet</servlet-name>
+        <servlet-class>MatchServlet</servlet-class>
     </servlet>
+<<<<<<< HEAD
     <servlet>
         <servlet-name>NextServlet</servlet-name>
         <servlet-class>NextServlet</servlet-class>
@@ -56,9 +58,11 @@
         <servlet-name>XMLServlet</servlet-name>
         <url-pattern>/XMLServlet</url-pattern>
     </servlet-mapping>
+=======
+>>>>>>> origin/dev
     <servlet-mapping>
-        <servlet-name>XMLServler2</servlet-name>
-        <url-pattern>/XMLServler2</url-pattern>
+        <servlet-name>MatchServlet</servlet-name>
+        <url-pattern>/MatchServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ignore</servlet-name>
