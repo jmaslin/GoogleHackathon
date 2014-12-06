@@ -175,7 +175,7 @@
       console.log("Hi");
 			$.ajax({
 				type: "post", 
-				url: "/FirstDraft/src/java/MatchServlet.java",      
+				url: "MatchServlet",      
 				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
 				dataType: "html", 
 				success: function(data) {
