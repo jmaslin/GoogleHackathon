@@ -39,35 +39,39 @@ public class MatchServlet extends HttpServlet {
             throws IOException, ServletException {
         //System.out.println("Hello");
          //   res.setContentType("application/json;charset=UTF-8");
-            String id = req.getParameter("rowID");
+            //String id = req.getParameter("rowID");
             
             String action = req.getParameter("purposeRadio");
             String item = req.getParameter("requestType");
             String locLat = req.getParameter("locLat"); 
             String locLng = req.getParameter("locLng"); 
-            String contact = req.getParameter("contactPhone");
+            String phone = req.getParameter("contactPhone");
+            String email = req.getParameter("contactEmail");
             String loc = req.getParameter("locLng");
             String lat = req.getParameter("locLat");
             
         try {
-           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact);
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), phone);
           
            if (t != null){
                //sent stuff
-               //email();
-               System.out.println("MATCH!");
+                System.out.println("MATCH!");
+               email(phone, email, "hello", "world");
+              
            }
         } catch (InvalidKeyException ex) {
             Logger.getLogger(MatchServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("My bad");
         }
-            System.out.println(loc);
-            System.out.println(Alg.AlgUtil.ALG.list.get(0).size());
-            res.sendRedirect(res.encodeRedirectURL("index.html"));
+          //  System.out.println(loc);
+         System.out.println("email:"+email);
+          System.out.println("phone:"+phone);
+            System.out.println(Alg.AlgUtil.ALG.list.get(0).values().size());
+           // res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
     public void email(String number, String email, String messageText, String keyword){
-        final String username = "letsexchangegoods@gmail.com";
+                final String username = "letsexchangegoods@gmail.com";
 		final String password = "bananapan";
  
 		Properties props = new Properties();
@@ -75,7 +79,7 @@ public class MatchServlet extends HttpServlet {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
- 
+                //   System.out.print("here");
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
                         @Override
@@ -87,15 +91,17 @@ public class MatchServlet extends HttpServlet {
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("letsexchangegoods@gmail.com"));
+			message.setFrom(new InternetAddress("me@gmail.com"));
                         if (number != null){
+                            
                             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@tmomail.net"));
                             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@txt.att.net"));
                             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@vtext.com"));
                             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@messaging.sprintpcs.com"));
                         }
                         if (email != null)
-                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+                            if(!email.equals(""))
+                                message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
  
                         message.setSubject("Match found: "+keyword);
 			message.setText(messageText);
