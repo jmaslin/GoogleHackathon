@@ -5,68 +5,9 @@
         <servlet-name>MatchServlet</servlet-name>
         <servlet-class>MatchServlet</servlet-class>
     </servlet>
-<<<<<<< HEAD
-    <servlet>
-        <servlet-name>NextServlet</servlet-name>
-        <servlet-class>NextServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SearchServlet</servlet-name>
-        <servlet-class>SearchServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RowAdd</servlet-name>
-        <servlet-class>RowAdd</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>XMLServlet</servlet-name>
-        <servlet-class>XMLServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>XMLServler2</servlet-name>
-        <servlet-class>XMLServler2</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ignore</servlet-name>
-        <servlet-class>ignore</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>TableServlet</servlet-name>
-        <url-pattern>/TableServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>NewServlet</servlet-name>
-        <servlet-class>NewServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NewServlet</servlet-name>
-        <url-pattern>/NewServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NextServlet</servlet-name>
-        <url-pattern>/NextServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SearchServlet</servlet-name>
-        <url-pattern>/SearchServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RowAdd</servlet-name>
-        <url-pattern>/RowAdd</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>XMLServlet</servlet-name>
-        <url-pattern>/XMLServlet</url-pattern>
-    </servlet-mapping>
-=======
->>>>>>> origin/dev
     <servlet-mapping>
         <servlet-name>MatchServlet</servlet-name>
         <url-pattern>/MatchServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ignore</servlet-name>
-        <url-pattern>/ignore</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
