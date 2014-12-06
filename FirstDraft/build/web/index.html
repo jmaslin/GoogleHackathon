@@ -83,9 +83,12 @@
 
 	<script type="text/javascript">
 
-    var locLat;
-    var locLng;
-	
+    $( document ).ready(function() {
+
+      var locLat = "";
+      var locLng = "";
+    });
+
   	$('#submitRequest').on("click", function(e) {
 			e.preventDefault(); // Got to error validates the datas firsts
 
@@ -97,11 +100,7 @@
 
 		$('#location').on('change', function() {
 
-			// e.preventDefault();
-			console.log("Test");
-
 			var location = $('#location').val();
-			console.log(location);
 
 			$.ajax({
 				type: "get", 
@@ -114,6 +113,8 @@
           locLng = data.results[0].geometry.location.lng;
 				}
 			});
+
+
 
 		});
 
@@ -140,26 +141,27 @@
 				validateEmail();
 			}
 
-			return false;
+			return true;
 		}
 
 		// TODO: Dropdown/Suggestions from common requests.
 		function validateRequest() {
 
-			validateRequest = false;
+			validReq = false;
 
 			request = $('#requestType').val();
 
 			if (request != "") {
-				validateRequest = true;
+				validReq = true;
 			}
+
 		}
 
 		function submitToJSON() {
-
+      // ../src/java/
 			$.ajax({
 				type: "POST", 
-				url: "../src/java/MatchServlet.java", 
+				url: "MatchServlet.java", 
 				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
 				dataType: "json", 
 				success: function(data) {
