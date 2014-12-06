@@ -49,10 +49,10 @@ public class MatchServlet extends HttpServlet {
             String email = req.getParameter("contactEmail");
             String loc = req.getParameter("locLng");
             String lat = req.getParameter("locLat");
-            
+            System.out.println("here");
         try {
-           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), phone);
-          
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), "",phone,email);
+          System.out.println("here");
            if (t != null){
                //sent stuff
                 System.out.println("MATCH!");
@@ -66,7 +66,7 @@ public class MatchServlet extends HttpServlet {
           //  System.out.println(loc);
          System.out.println("email:"+email);
           System.out.println("phone:"+phone);
-            System.out.println(Alg.AlgUtil.ALG.list.get(0).values().size());
+          //  System.out.println(Alg.AlgUtil.ALG.list.get(0).values().size());
            // res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
