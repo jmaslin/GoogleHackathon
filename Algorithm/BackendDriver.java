@@ -32,18 +32,18 @@ public class BackendDriver {
 	 * @param location The location of the query
 	 * @param maxDist The max distance the querier is willing to respond
 	 */
-	public ComparableRequestQuery newQuery(Type t, String keyword,Point2D.Double coord, String name) throws InvalidKeyException{
+	public ComparableRequestQuery newQuery(String t, String keyword,Point2D.Double coord, String name) throws InvalidKeyException{
 		ComparableRequestQuery rq = new ComparableRequestQuery(t,keyword,coord,name);
 		ComparableRequestQuery foundQuery = null;
 		
 		int id = 0;
 		int other = 1;
 		switch(t){
-		case SERVICE: 
+		case "2": 
 			id = 1;
 			other = 0;
 			break;
-		case REQUEST:
+		case "1":
 			id = 0;
 			other = 1;
 			break;
