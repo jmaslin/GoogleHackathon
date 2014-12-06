@@ -87,6 +87,9 @@
 
 	<script type="text/javascript">
 
+		var locLat;
+		var locLng;
+
 		$('#submitRequest').on("click", function(e) {
 			e.preventDefault(); // Got to error validates the datas firsts
 
