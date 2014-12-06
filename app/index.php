@@ -90,13 +90,10 @@
 		function validateInput() {
 			// Limited error checking because will be checked in backend.
 
-			if (validateRequest()) {
-				if ($('#emailCheck').attr('checked')) {
-					validateEmail();
-				}
+			validateRequest();
+			if ($('#emailCheck').attr('checked')) {
+				validateEmail();
 			}
-
-
 
 			return false;
 		}
@@ -117,7 +114,7 @@
 
 			$.ajax({
 				type: "POST", 
-				url: "process/test.php", 
+				url: "process/run.php", 
 				data: $('#submitReq').serialize(), 
 				dataType: "json", 
 				success: function(data) {
