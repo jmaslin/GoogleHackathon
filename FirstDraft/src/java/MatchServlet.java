@@ -38,6 +38,8 @@ public class MatchServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
         //System.out.println("Hello");
+            String id = req.getParameter("rowID");
+            
             String action = req.getParameter("purposeRadio");
             String item = req.getParameter("requestType");
             String locLat = req.getParameter("locLat"); 
@@ -46,9 +48,11 @@ public class MatchServlet extends HttpServlet {
             
         try {
            ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact);
+          
            if (t != null){
                //sent stuff
-               email();
+               //email();
+               System.out.println("MATCH!");
            }
         } catch (InvalidKeyException ex) {
             Logger.getLogger(MatchServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,7 +63,7 @@ public class MatchServlet extends HttpServlet {
            // res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
-    public void email(){
+    public void email(String number, String email, String messageText, String keyword){
         final String username = "letsexchangegoods@gmail.com";
 		final String password = "bananapan";
  
@@ -81,12 +85,18 @@ public class MatchServlet extends HttpServlet {
  
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("letsexchangegoods@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("8562468429@tmomail.net"));
-			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler,"
-				+ "\n\n No spam to my email, please!");
+                        if (number != null){
+                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@tmomail.net"));
+                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@txt.att.net"));
+                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@vtext.com"));
+                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@messaging.sprintpcs.com"));
+                        }
+                        if (email != null)
+                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
  
+                        message.setSubject("Match found: "+keyword);
+			message.setText(messageText);
+                        
 			Transport.send(message);
  
 			System.out.println("Done");
