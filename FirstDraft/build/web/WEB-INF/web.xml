@@ -24,6 +24,10 @@
         <servlet-name>XMLServler2</servlet-name>
         <servlet-class>XMLServler2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MatchServlet</servlet-name>
+        <servlet-class>MatchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TableServlet</servlet-name>
         <url-pattern>/TableServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>XMLServler2</servlet-name>
         <url-pattern>/XMLServler2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MatchServlet</servlet-name>
+        <url-pattern>/MatchServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
