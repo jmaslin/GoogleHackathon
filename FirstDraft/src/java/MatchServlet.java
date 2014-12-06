@@ -39,24 +39,25 @@ public class MatchServlet extends HttpServlet {
             throws IOException, ServletException {
         //System.out.println("Hello");
          //   res.setContentType("application/json;charset=UTF-8");
-            String id = req.getParameter("rowID");
+           // String id = req.getParameter("rowID");
             
             String action = req.getParameter("purposeRadio");
             String item = req.getParameter("requestType");
             String locLat = req.getParameter("locLat"); 
             String locLng = req.getParameter("locLng"); 
-            String contact = req.getParameter("contactPhone");
+            String phone = req.getParameter("contactPhone");
+            String email = req.getParameter("contactEmail");
 
             
             double lat = Double.parseDouble(locLat);
             double lng = Double.parseDouble(locLng);
             
         try {
-           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(lat, lng), contact, "hello ", "hello");
-          
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(lat, lng), "", phone, email);
+         
            if (t != null){
                //sent stuff
-               //email();
+               email(phone, email, action, item);
                System.out.println("MATCH!");
            }
         } catch (InvalidKeyException ex) {
