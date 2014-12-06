@@ -1,7 +1,7 @@
 /**
  * 
  */
-package hackathon.google.nyc;
+package Alg;
 
 /**
  * Type of file, either a request for a service or a service for hire

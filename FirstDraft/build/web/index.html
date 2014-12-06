@@ -1,60 +1,208 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h4>To find location of file right click and go to properties to check.</h4>
-        <form action="TableServlet" method="Post">
-            FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
-            <br />
-            How many columns in the file? <input type="text" name="last_name">
-            <br />
+
+<html lang="en">
+	<head>
+		<title>GoogleHack</title>
+
+		<script src="/assets/js/jquery-2.1.1.min.js"></script>
+
+		<!-- BOOTSTRAP -->
+		<link href="/assets/css/bootstrap.css" rel="stylesheet" />
+		<script src="/assets/js/bootstrap.js"></script>
+
+		<!-- CUSTOM -->
+		<link href="/assets/css/design.css" rel="stylesheet" />
+
+	</head>
+	<body>
+
+	<!-- INCLUDE PAGE CONTENT. -->
+        <?php include "views/header.php"; ?>
+
+	<div class="container-fluid">
+
+		<div id="top" class="row-fluid text-center">
+			<div class="col-sm-6 col-sm-offset-3">
+				<h1>Overlord App <small>Connecting people the smart way.</small></h1>
+				<hr />
+			</div>
+		</div>
+
+		<div class="row-fluid text-center">
+			<div class="col-sm-6 col-sm-offset-3">
+				<h2>Choose some options.</h2>
+				<br />
+
+				<!-- Formatting:
+
+				- Have user enter location
+				- Determine if requests exist near location + dispaly
+				- Allow user to enter own request
+				- Determine length of time or urgency
+				- Submit request to db
+
+				 -->
+				<!-- TODO: LOG IN BUTTON -->
+
+					<!-- Request: Either buying or selling. What it is. Location. Email or phone, but have one. -->
+
+					<!-- Field One: WANT / NEED -->
+					<!-- Field Two: ITEM / SERVICE -->
+					<!-- Field Three: Must choose AT LEAST one: -->
+						<!-- Field Three: EMAIL (Optional) -->
+						<!-- Field Three Part Two: PHONE (Optional) -->
+					<!-- FIELD Four: PASSWORD (Optional, used to make account to manage requests.) -->
+
+				<!--	<form id="submitReq" role="form" action="process/run.jsp"> -->
+                                        <form id="submitReq" action="MatchServlet" method="Post"> 
+						<div class="form-group">
+							<label for="purpose">Purpose</label>
+							<div class="radio">
+								<label>
+									<input type="radio" name="purposeRadio" id="purpose1" value="1">
+									I want
+								</label>
+								<label>
+									<input type="radio" name="purposeRadio" id="purpose2" value="2">
+									I have
+								</label>
+						</div>
+						<div class="form-group">
+							<label for="request">Request</label>
+							<input type="text" class="form-control" name="requestType" id="requestType" autocomplete="off" placeholder="Enter what you have or need.">
+						</div>
+						<div class="form-group">
+							<label for="location">Location</label>
+							<input type="text" class="form-control" name="location" id="location" autocomplete="off" placeholder="Enter your general location.">
+						</div>
+						<label for="contact">Contact Method(s)</label>
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input id="emailCheck" type="checkbox">
+							</span>
+							<input type="text" class="form-control" name="contactEmail" id="contactEmail" autocomplete="off" placeholder="Email">
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">
+								<input id="phoneCheck" type="checkbox">
+							</span>
+							<input type="text" class="form-control" name="contactPhone" id="contactPhone" autocomplete="off" placeholder="Phone">
+						</div>
+						<!-- TODO: Make this better. All of it. -->
+						<br />
+						<div class="form-group">
+							<label for="request">Password (Optional, create an account to manage requests.)</label>
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+							<!-- TODO: Hide this until someone types in above field. -->
+							<input type="password" class="form-control" name="passwordConf" id="passwordConf" placeholder="Password Confirm">						
+						</div>
+     	  		<button id="submitRequest" type="submit" class="btn btn-default">Submit</button>
+     			</form>
+
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+
+		$('#submitRequest').on("click", function(e) {
+			e.preventDefault(); // Got to error validates the datas firsts
+
+			if (validateInput()) {
+				submitToJSON(); // Now our Java friends can do stuff
+			}
+
+		});
+
+		$('#location').on('change', function() {
+
+			// e.preventDefault();
+			console.log("Test");
+
+			var location = $('#location').val();
+			console.log(location);
+
+			$.ajax({
+				type: "get", 
+				url: "https://maps.googleapis.com/maps/api/geocode/json", 
+				data: "key=AIzaSyC3Pl0tPmMQj5vTWSG5hzZduffke73rvpY&address="+location, 
+				dataType: "json", 
+				success: function(data) {
+					console.log(data);
+				}
+			});
+
+		});
+
+		function getAddress() {
+
+			location = $('#location').val();
+			console.log(location);
+			// $.ajax({
+			// 	type: "get", 
+			// 	url: "http://maps.googleapis.com/maps/api/geocode/output", 
+			// 	data: "key=AIzaSyC3Pl0tPmMQj5vTWSG5hzZduffke73rvpY&address="+location, 
+			// 	dataType: "json", 
+			// 	success: function(data) {
+			// 		console.log(data);
+			// 	}
+			// });
+
+			// return false;
+		}
 
 
-            <input type="submit" value="Submit" /></form>
-        <br />
-        <h4>Use this for refined search</h4>
-        <form action="SearchServlet" method="Post">
-            Search for keyword must be exact:<input type="text" name="something">
-            <br />
-            How many columns in the file? <input type="text" name="last_name">
-            
-            <br />
-            FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
-            <br />
-            <input type="submit" value="Submit" />
-        </form>
-        <br />
-        <h4>Use this for adding empty rows.</h4>
-       <form action="RowAdd" method="Post">
-            How many empty rows would you like to add:<input type="text" name="something">
-            <br />
-            How many columns in the file? <input type="text" name="last_name">
+		function validateInput() {
+			// Limited error checking because will be checked in backend.
 
-            <br />
-            FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
-            <br />
-            <input type="submit" value="Submit" />
-        </form>
-<br />
-<form action="XMLServlet" method="Post">
-    FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
-            <br />
-    Name of XML file(include location):<input type="text" name="jo">
-    <br />
+			validateRequest();
+			if ($('#emailCheck').attr('checked')) {
+				validateEmail();
+			}
 
-            How many columns in the file? <input type="text" name="last_name">
-            <br />
-    <input type="submit" value="Submit"/>
-</form>
+			return false;
+		}
 
+		// TODO: Dropdown/Suggestions from common requests.
+		function validateRequest() {
 
+			validateRequest = false;
 
-    </body>
+			request = $('#requestType').val();
+
+			if (request != "") {
+				validateRequest = true;
+			}
+		}
+
+		function submitToJSON() {
+
+			$.ajax({
+				type: "POST", 
+				url: "process/run.php", 
+				data: $('#submitReq').serialize(), 
+				dataType: "json", 
+				success: function(data) {
+
+				}
+
+			});
+		}
+
+	</script>
+
+<?php include "views/footer.php"; ?>
+
+	<!-- END PAGE CONTENT -->
+
+	<footer>
+		<div class="row-fluid text-center">
+			<div class="col-sm-6 col-sm-offset-3">
+				<hr />
+				<p><small>Google Hackathon 2014</small></p>
+			</div>
+		</div>
+	</footer>
+
+	</body>
 </html>

@@ -23,10 +23,13 @@ public class MatchServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
+        //System.out.println("Hello");
             String action = req.getParameter("purposeRadio");
             String item = req.getParameter("requestType");
             String loc = req.getParameter("location");
             String contact = req.getParameter("contactPhone");
+            System.out.println(action);
+            res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
 
