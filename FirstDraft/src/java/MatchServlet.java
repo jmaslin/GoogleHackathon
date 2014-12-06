@@ -45,7 +45,7 @@ public class MatchServlet extends HttpServlet {
             String contact = req.getParameter("contactPhone");
             
         try {
-           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact);
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact, "hello", "eh");
            if (t != null){
                //sent stuff
                email();
@@ -55,7 +55,7 @@ public class MatchServlet extends HttpServlet {
             System.out.println("My bad");
         }
             System.out.println(action);
-            System.out.println(Alg.AlgUtil.ALG.list.get(0).size());
+           // System.out.println(Alg.AlgUtil.ALG.list.get(0).size());
            // res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
