@@ -158,10 +158,10 @@
 		}
 
 		function submitToJSON() {
-
+      // ../src/java/
 			$.ajax({
 				type: "POST", 
-				url: "../src/java/MatchServlet.java", 
+				url: "MatchServlet.java", 
 				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
 				dataType: "json", 
 				success: function(data) {
