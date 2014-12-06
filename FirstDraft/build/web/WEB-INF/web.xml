@@ -24,6 +24,10 @@
         <servlet-name>XMLServler2</servlet-name>
         <servlet-class>XMLServler2</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ignore</servlet-name>
+        <servlet-class>ignore</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TableServlet</servlet-name>
         <url-pattern>/TableServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>XMLServler2</servlet-name>
         <url-pattern>/XMLServler2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ignore</servlet-name>
+        <url-pattern>/ignore</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
