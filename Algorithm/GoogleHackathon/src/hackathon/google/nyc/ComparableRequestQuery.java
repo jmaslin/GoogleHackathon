@@ -16,6 +16,7 @@ import java.awt.geom.Point2D;
 public class ComparableRequestQuery implements Comparable<Object> {
 
 	private String name;
+	private String number;
 	private String t;
 	private String keyword; //possibly enum for simplification
 	private Point2D.Double coord;
@@ -23,11 +24,12 @@ public class ComparableRequestQuery implements Comparable<Object> {
 	
 
 	
-	public ComparableRequestQuery(String t, String keyword,Point2D.Double coord, String name){
+	public ComparableRequestQuery(String t, String keyword,Point2D.Double coord, String name,String number){
 		this.t = t;
 		this.keyword = keyword;
 		this.coord = coord;
 		this.name = name;
+		this.number = number;
 	}
 	
 	/**
@@ -51,6 +53,24 @@ public class ComparableRequestQuery implements Comparable<Object> {
 	 */
 	public void setDistance(double dist){
 		distance = dist; 
+	}
+	
+	/**
+	 * Method to get the name
+	 * 
+	 * @return returns the name
+	 */
+	public String getName(){
+		return name;
+	}
+	
+	/**
+	 * Method to get the number
+	 * 
+	 * @return returns the number
+	 */
+	public String getNumber(){
+		return number;
 	}
 	
 	/**
