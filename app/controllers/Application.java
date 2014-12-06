@@ -8,7 +8,10 @@ import views.html.*;
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render("Team Fantastic 404 for #Hack4Humanity"));
+  
+      String pageName = "Home";
+      
+      return ok(index.render(pageName)); // Runs the index.scala.html page
     }
 
 }

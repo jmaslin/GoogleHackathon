@@ -1,7 +1,13 @@
-@(message: String)
+@(pageName: String) 
+<!-- Variable set in Application.java -->
 
-@main("Welcome to Play") {
+@main(pageName) {
 
-    @play20.welcome(message, style = "Java")
+		<div class="container-fluid">
+			<div class="row col-sm-8 col-sm-offset-2 text-center">
+				<h1>Team 404 <small>#Hack4Humanity</small></h1>
+				<hr />
+			</div>
+		</div>
 
 }
