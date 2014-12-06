@@ -35,9 +35,9 @@ import javax.servlet.http.HttpServletResponse;
 public class MatchServlet extends HttpServlet {
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        //System.out.println("Hello");
+        System.out.println("Hello");
             String action = req.getParameter("purposeRadio");
             String item = req.getParameter("requestType");
             String locLat = req.getParameter("locLat"); 
@@ -56,7 +56,7 @@ public class MatchServlet extends HttpServlet {
         }
             System.out.println(action);
             System.out.println(Alg.AlgUtil.ALG.list.get(0).size());
-            res.sendRedirect(res.encodeRedirectURL("index.html"));
+           // res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
     public void email(){
