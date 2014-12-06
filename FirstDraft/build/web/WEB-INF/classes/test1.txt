@@ -1,0 +1,5 @@
+wasa1:wasa2:wasa3:a4:a5:a6:a7:a8:a9
+wasc1:wasb2:wasb3:b4:b5:b6:b7:b8:b9
+b1:wasc2:wasc3:c4:c5:c6:c7:c8:c9
+wasd1:d2:idk:d4:d5:d6:d7:d8:d9
+wase1:thiswase2:note3:e4:WORD:wase6:e7:e8:e9
