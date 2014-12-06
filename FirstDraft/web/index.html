@@ -1,0 +1,60 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h4>To find location of file right click and go to properties to check.</h4>
+        <form action="TableServlet" method="Post">
+            FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
+            <br />
+            How many columns in the file? <input type="text" name="last_name">
+            <br />
+
+
+            <input type="submit" value="Submit" /></form>
+        <br />
+        <h4>Use this for refined search</h4>
+        <form action="SearchServlet" method="Post">
+            Search for keyword must be exact:<input type="text" name="something">
+            <br />
+            How many columns in the file? <input type="text" name="last_name">
+            
+            <br />
+            FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+        <br />
+        <h4>Use this for adding empty rows.</h4>
+       <form action="RowAdd" method="Post">
+            How many empty rows would you like to add:<input type="text" name="something">
+            <br />
+            How many columns in the file? <input type="text" name="last_name">
+
+            <br />
+            FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+<br />
+<form action="XMLServlet" method="Post">
+    FileName(case sensitive and include directory ex C:/Users/***/Desktop/document.txt) <input type="text" name="first_name">
+            <br />
+    Name of XML file(include location):<input type="text" name="jo">
+    <br />
+
+            How many columns in the file? <input type="text" name="last_name">
+            <br />
+    <input type="submit" value="Submit"/>
+</form>
+
+
+
+    </body>
+</html>

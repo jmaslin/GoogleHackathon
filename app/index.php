@@ -13,6 +13,16 @@
 			<div class="col-sm-6 col-sm-offset-3">
 				<h2>Choose some options.</h2>
 				<br />
+
+				<!-- Formatting:
+
+				- Have user enter location
+				- Determine if requests exist near location + dispaly
+				- Allow user to enter own request
+				- Determine length of time or urgency
+				- Submit request to db
+
+				 -->
 				<!-- TODO: LOG IN BUTTON -->
 
 					<!-- Request: Either buying or selling. What it is. Location. Email or phone, but have one. -->
@@ -86,17 +96,51 @@
 
 		});
 
+		$('#location').on('change', function() {
+
+			// e.preventDefault();
+			console.log("Test");
+
+			var location = $('#location').val();
+			console.log(location);
+
+			$.ajax({
+				type: "get", 
+				url: "https://maps.googleapis.com/maps/api/geocode/json", 
+				data: "key=AIzaSyC3Pl0tPmMQj5vTWSG5hzZduffke73rvpY&address="+location, 
+				dataType: "json", 
+				success: function(data) {
+					console.log(data);
+				}
+			});
+
+		});
+
+		function getAddress() {
+
+			location = $('#location').val();
+			console.log(location);
+			// $.ajax({
+			// 	type: "get", 
+			// 	url: "http://maps.googleapis.com/maps/api/geocode/output", 
+			// 	data: "key=AIzaSyC3Pl0tPmMQj5vTWSG5hzZduffke73rvpY&address="+location, 
+			// 	dataType: "json", 
+			// 	success: function(data) {
+			// 		console.log(data);
+			// 	}
+			// });
+
+			// return false;
+		}
+
 
 		function validateInput() {
 			// Limited error checking because will be checked in backend.
 
-			if (validateRequest()) {
-				if ($('#emailCheck').attr('checked')) {
-					validateEmail();
-				}
+			validateRequest();
+			if ($('#emailCheck').attr('checked')) {
+				validateEmail();
 			}
-
-
 
 			return false;
 		}
@@ -117,7 +161,7 @@
 
 			$.ajax({
 				type: "POST", 
-				url: "process/test.php", 
+				url: "process/run.php", 
 				data: $('#submitReq').serialize(), 
 				dataType: "json", 
 				success: function(data) {
