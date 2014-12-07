@@ -244,9 +244,10 @@
 				
 				//$('#listings').trigger('create');
 			},
-                        error: function(data){
-                            alert("I BORKE");
-                        }
+    	error: function(data){
+     		console.log("Failed to grab.");
+     	}
+                        
 		});
 
 	}
