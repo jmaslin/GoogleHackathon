@@ -22,12 +22,20 @@
 	</head>
 
 	<body>
- <button type="buttom" onclick ="location.href='convo/index.html'"> </button>
   	<div id="topContainer" class="container">
 
   		<div id="top" class="row text-center">
   			<div class="col-sm-6 col-sm-offset-3">
-  				<h1 class="title">MaizeHub<br /><small>Connecting people <em>the smart way.</em></small></h1>
+
+          <button id="titleBtn" class="btn btn-info btn-lg">
+            <h1><a href="#">MaizeHub</a></h1>
+          </button>
+  				<h1 id="subtitle" class="title">
+            <small>
+              <div class="slogan">Connecting people </div>
+              <div class="slogan"><em>the smart way.</em></div>
+            </small>
+          </h1>
   				<hr>
   			</div>
   		</div>
@@ -97,6 +105,13 @@
 
   			</div>
   		</div>
+
+      <div class="row text-center">
+        <div class="col-sm-6 col-sm-offset-3">
+          <hr>
+          <button id="toCommunity" class="btn btn-warning btn-lg" onclick="window.location.href='/convo'"><strong>Community Hub</strong></button>
+        </div>
+      </div>
 
   	</div>
 
