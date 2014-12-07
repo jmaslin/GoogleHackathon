@@ -117,6 +117,23 @@ public class Group {
 		return new Gson().toJson(names);
 	}
 	
+	
+	public String getNumbersJson(){
+		ArrayList<String> numbers = new ArrayList<String>();
+		for(User user : usersList){
+			numbers.add(user.getNumber());
+		}
+		return new Gson().toJson(numbers);
+	}
+	
+	public String getEmailsJson(){
+		ArrayList<String> emails = new ArrayList<String>();
+		for(User user : usersList){
+			emails.add(user.getEmail());
+		}
+		return new Gson().toJson(emails);
+	}
+	
 	/**
 	 * @return returns the list of tags associated with this group
 	 */
