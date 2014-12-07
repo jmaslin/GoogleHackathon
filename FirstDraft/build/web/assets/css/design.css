@@ -1,28 +1,71 @@
 /* TOP OF PAGE */
 
+.title {
+	font-family: 'Bitter', serif;
+	font-size: 2.45em;
+}
+
+.title small {
+	font-size: 0.4em;
+}
+
 #top {
 	margin-bottom: 25px;
 }
 
-#topContainer {
-	margin-top: 25px;
-}
-
-
 /* BOTTOM OF PAGE */
 
+#footerContiner {
+	/*margin-top: 50px;*/
+}
+
 footer {
-	margin-top: 100px;
 	color: white;
 }
 
-
 /* PAGE */
 
-.container-fluid {
+#topContainer {
 	background: rgba(255, 255, 255, 1);
+	margin-top: 25px;
 }
 
 body {
-	background-image: url('/FirstDraft/web/assets/img/footer_lodyas.png');
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 22px;
+	/*background-image: url('/FirstDraft/web/assets/img/footer_lodyas.png');*/
+}
+
+/* INPUTS */	
+
+input{
+   text-align:center;
+}
+
+input[type=text] {
+	font-size: 0.9em;
+	height: 2em;
+}
+
+input[type=checkbox] {
+	outline: none;
+	border: none;
+	background: transparent;
+
+}
+
+.radio label {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#optionButtons {
+	margin-bottom: 25px;
+}
+
+#optionButtons button, #submitRequest {
+	margin-bottom: 10px;
+	width: 100%;
+	white-space: normal;
+	font-size: 1em;
 }
