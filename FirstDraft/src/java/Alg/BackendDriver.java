@@ -40,37 +40,44 @@ public class BackendDriver {
 		ComparableRequestQuery rq = new ComparableRequestQuery(type,keyword,coord,name,number,email);
 		ComparableRequestQuery foundQuery = null;
 
-		JsonThesaurus list2 = new JsonThesaurus();
-		ArrayList<String> thes = list2.thesaurus(keyword);
-		
-		thes.add(keyword);
+//		JsonThesaurus list2 = new JsonThesaurus();
+//		ArrayList<String> thes = list2.thesaurus(keyword);
+//		
+//		thes.add(keyword);
 		
 		int id = 0;
 		int other = 1;
-		switch(type){
-		case "2": 			//service
+                 
+//		switch(type){
+//		case "2": 	System.out.println("here");
+                   //service
+                //System.out.println(type);
+                if(type.equals("2")){
 			id = 1;
 			other = 0;
-			break;
-		case "1":			//request
+   
+                }
+//		case "1": 	System.out.println("here");
+                else if (type.equals("1")){//request
 			id = 0;
 			other = 1;
-			break;
-		default:
+                }
+                else{
+                     
 				throw new InvalidKeyException();
 		}
-	
-		for(int i = 0; i < thes.size();i++){
-			if(list.get(id).containsKey(thes.get(i))||list.get(other).containsKey(thes.get(i))){
-				keyword = thes.get(i);
-				i = thes.size();
-			}
-		}
-		
+                 
+//		for(int i = 0; i < thes.size();i++){
+//			if(list.get(id).containsKey(thes.get(i))||list.get(other).containsKey(thes.get(i))){
+//				keyword = thes.get(i);
+//				i = thes.size();
+//			}
+//		}
+
 		
 		if(list.get(other).containsKey(keyword)){  //if opposite type is found			
 			list.get(other).put(keyword, updateDistance(list.get(other).get(keyword),coord));			//update distances of other type
-			if(list.get(other).get(keyword).peek().getDistance() <= maxDist){
+			if((list.get(other).get(keyword).peek() != null) &&(list.get(other).get(keyword).peek().getDistance() <= maxDist)){
 				foundQuery = list.get(other).get(keyword).poll();
 				System.out.println(foundQuery.toString() + ": " + name);
 			} else {			

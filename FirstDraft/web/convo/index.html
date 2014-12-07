@@ -1,0 +1,90 @@
+<!-- 
+	FILE NAME: CONVO/INDEX.HTML
+	FIILE AUTH: JUSTIN
+	USES: CONVO.CSS
+ -->
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<script src="../assets/js/jquery-2.1.1.min.js"></script>
+
+		<!-- BOOTSTRAP -->
+		<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+		<script src="../assets/js/bootstrap.js"></script>
+
+		<!-- CUSTOM -->
+		<link href="../assets/css/design.css" rel="stylesheet" />
+		<link href="../assets/css/convo.css" rel="stylesheet" />
+
+    <!-- FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro|Ubuntu\Bitter' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+	</head>
+	<body>	
+
+		<div class="container">
+
+			<div class="row">
+				<div id="sidebar" class="col-sm-3">
+					<div class="row">
+						<div class=" input-lg">
+							<input type="text" class="form-control" id="search" autocomplete="off" placeholder="Search">
+							<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<h3>Popular Tags</h3>
+					</div>
+				</div>
+				<div id="main" class="col-sm-7 col-sm-offset-1"> <!-- MAIN PAGE CONTENT -->
+					<div class="row"> <!-- Page Heading -->
+						<h2 class="title">The Convo Bay</h2>
+						<hr />
+					</div>
+					<div id="listings" class="row"> <!-- Start Listings -->
+						<!-- SAMPLE -->
+						<div class="chatGroup col-sm-3 col-xs-4">
+							<a href="#" class="chatExpand imageLink">
+							<img class="img img-responsive img-thumbnail" src="../assets/img/person.gif">
+							<p><strong><span class="chatGroupName">Group Name</span></strong></p>
+							</a>
+						</div>
+					</div> <!-- End Listings -->
+				</div> <!-- END MAIN PAGE CONTENT -->
+			</div>
+
+		</div>
+	</body>
+</html>
+
+<script type="text/javascript">
+	
+	$( document ).ready(function() {
+			
+		getListings();
+	});
+
+	function getListings(type) {
+
+		$.ajax({
+			type: "get", 
+			url: "text.php", 
+			data: "type="+type, 
+			success: function(data) {
+
+				data = $.parseJSON(data);
+				console.log(data);
+				$.each(data, function(i, v) {
+					console.log(v.name);
+				});
+
+				// console.log(data);
+			}
+		});
+
+	}
+
+</script>

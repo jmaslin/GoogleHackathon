@@ -5,12 +5,15 @@
  */
 
 import Alg.ComparableRequestQuery;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import java.awt.geom.Point2D;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.security.InvalidKeyException;
 import java.time.Clock;
 import java.util.Properties;
@@ -39,35 +42,55 @@ public class MatchServlet extends HttpServlet {
             throws IOException, ServletException {
         //System.out.println("Hello");
          //   res.setContentType("application/json;charset=UTF-8");
-            String id = req.getParameter("rowID");
+       //
+        //    String id = req.getParameter("rowID");
+            /*
+        Param 
+        */
+            String json = req.getParameter("data");
+            JsonReader reader = new JsonReader(new StringReader(json));
+            reader.beginObject();
             
-            String action = req.getParameter("purposeRadio");
-            String item = req.getParameter("requestType");
-            String locLat = req.getParameter("locLat"); 
-            String locLng = req.getParameter("locLng"); 
-
-            String phone = req.getParameter("contactPhone");
-
-            String email = req.getParameter("contactEmail");
-            System.out.println("here");
-
+            reader.skipValue();
+            String name = reader.nextString();
             
+            reader.skipValue();
+            String action = reader.nextString();
+
+            reader.skipValue();
+            String request = reader.nextString();
+            
+            reader.skipValue();
+            String locLat = reader.nextString();
+            
+            reader.skipValue();
+            String locLng = reader.nextString();
+
+            reader.skipValue();
+            String phone = reader.nextString();
+
+            reader.skipValue();
+            String email = reader.nextString();
+            
+           
+            System.out.println(action + "  "+json);
             double lat = Double.parseDouble(locLat);
             double lng = Double.parseDouble(locLng);
 
             
         try {
 
-           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(lat, lng), "", "hello ", "hello");
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, request, new Point2D.Double(lat, lng), name, phone, email);
           
-
+           
            if (t != null){
                //sent stuff
-               //email();
+               //System.out.println("here");
+               email(phone, email, name, request);
                System.out.println("MATCH!");
            }
         } catch (InvalidKeyException ex) {
-            Logger.getLogger(MatchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(MatchServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("My bad");
         }
             
@@ -75,16 +98,16 @@ public class MatchServlet extends HttpServlet {
             res.sendRedirect(res.encodeRedirectURL("index.html"));
 
     }
-    public void email(String number, String email, String messageText, String keyword){
-        final String username = "letsexchangegoods@gmail.com";
+    public void email(String number, String email, String name, String keyword){
+        final String username = "tradersofstuff@gmail.com";
 		final String password = "bananapan";
- 
+                
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
- 
+
 		Session session = Session.getInstance(props,
 		  new javax.mail.Authenticator() {
                         @Override
@@ -96,18 +119,23 @@ public class MatchServlet extends HttpServlet {
 		try {
  
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("letsexchangegoods@gmail.com"));
+			message.setFrom(new InternetAddress("tradersofstuff@gmail.com"));
                         if (number != null){
+                           if (!number.equals("")){
                             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@tmomail.net"));
-                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@txt.att.net"));
-                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@vtext.com"));
-                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@messaging.sprintpcs.com"));
+                           // message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@txt.att.net"));
+                           // message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@vtext.com"));
+                           // message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@messaging.sprintpcs.com"));
+                           }
                         }
-                        if (email != null)
+                        if (email != null){
+                            if (!email.equals("")){
                             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
- 
+                              System.out.println("here");
+                            }
+                        }
                         message.setSubject("Match found: "+keyword);
-			message.setText(messageText);
+			message.setText("Name"+name);
                         
 			Transport.send(message);
  
