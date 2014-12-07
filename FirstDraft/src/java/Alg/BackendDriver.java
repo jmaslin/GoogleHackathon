@@ -1,10 +1,12 @@
-package Alg;
-
 /**
  * 
  */
+package Alg;
 
 import java.awt.geom.Point2D;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,8 +18,8 @@ import java.util.PriorityQueue;
  */
 public class BackendDriver {
 
-	public ArrayList<HashMap<String, PriorityQueue<ComparableRequestQuery>>> list;
-	public double maxDist = 50; //Km
+	ArrayList<HashMap<String, PriorityQueue<ComparableRequestQuery>>> list;
+	double maxDist = 200; //Km
 	
 	public BackendDriver(){
 		list = new ArrayList<HashMap<String, PriorityQueue<ComparableRequestQuery>>>();
@@ -28,31 +30,44 @@ public class BackendDriver {
 	/**
 	 * Method to respond to a service or request
 	 * 
-	 * @param t The type of the query
+	 * @param type The type of the query
 	 * @param keyword The keyword of the query
 	 * @param location The location of the query
 	 * @param maxDist The max distance the querier is willing to respond
+	 * @throws IOException 
 	 */
-	public ComparableRequestQuery newQuery(String t, String keyword,Point2D.Double coord, String name) throws InvalidKeyException{
-		ComparableRequestQuery rq = new ComparableRequestQuery(t,keyword,coord,name);
+	public ComparableRequestQuery newQuery(String type, String keyword,Point2D.Double coord, String name,String number, String email) throws InvalidKeyException, IOException{
+		ComparableRequestQuery rq = new ComparableRequestQuery(type,keyword,coord,name,number,email);
 		ComparableRequestQuery foundQuery = null;
+
+		JsonThesaurus list2 = new JsonThesaurus();
+		ArrayList<String> thes = list2.thesaurus(keyword);
+		
+		thes.add(keyword);
 		
 		int id = 0;
 		int other = 1;
-		switch(t){
-		case "2": 
+		switch(type){
+		case "2": 			//service
 			id = 1;
 			other = 0;
 			break;
-		case "1":
+		case "1":			//request
 			id = 0;
 			other = 1;
 			break;
 		default:
 				throw new InvalidKeyException();
 		}
-            
-               
+	
+		for(int i = 0; i < thes.size();i++){
+			if(list.get(id).containsKey(thes.get(i))||list.get(other).containsKey(thes.get(i))){
+				keyword = thes.get(i);
+				i = thes.size();
+			}
+		}
+		
+		
 		if(list.get(other).containsKey(keyword)){  //if opposite type is found			
 			list.get(other).put(keyword, updateDistance(list.get(other).get(keyword),coord));			//update distances of other type
 			if(list.get(other).get(keyword).peek().getDistance() <= maxDist){
@@ -77,7 +92,6 @@ public class BackendDriver {
 	 * @param id The type of the query
 	 */
 	private void doesntExist(ComparableRequestQuery rq, String keyword, int id){
-		//System.out.println(rq.toString());
 		if (list.get(id).get(keyword) != null){
 			list.get(id).get(keyword).add(rq);
 		}else {
@@ -130,11 +144,8 @@ public class BackendDriver {
 		double c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1.0-a));
 
 		double d = R * c;
-		//System.out.println(d);
 		return d;
-		
-		//return Math.random()*100; // Really accurate distance calculator
-	}
+		}
 	
 
 

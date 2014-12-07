@@ -48,10 +48,15 @@ public class MatchServlet extends HttpServlet {
             String contact = req.getParameter("contactPhone");
             String loc = req.getParameter("locLng");
             String lat = req.getParameter("locLat");
-            
+            System.out.println("here");
         try {
+<<<<<<< HEAD
            ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), contact);
           
+=======
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(0, 0), "",phone,email);
+          System.out.println("here");
+>>>>>>> parent of bfb90a1... Revert "CAM BROKE IT"
            if (t != null){
                //sent stuff
                //email();
@@ -61,9 +66,17 @@ public class MatchServlet extends HttpServlet {
             Logger.getLogger(MatchServlet.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("My bad");
         }
+<<<<<<< HEAD
             System.out.println(loc);
             System.out.println(Alg.AlgUtil.ALG.list.get(0).size());
             res.sendRedirect(res.encodeRedirectURL("index.html"));
+=======
+          //  System.out.println(loc);
+         System.out.println("email:"+email);
+          System.out.println("phone:"+phone);
+          //  System.out.println(Alg.AlgUtil.ALG.list.get(0).values().size());
+           // res.sendRedirect(res.encodeRedirectURL("index.html"));
+>>>>>>> parent of bfb90a1... Revert "CAM BROKE IT"
 
     }
     public void email(String number, String email, String messageText, String keyword){
