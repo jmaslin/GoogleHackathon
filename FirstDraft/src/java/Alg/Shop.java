@@ -35,6 +35,7 @@ public class Shop extends Group{
     public String getJson(){
     	return new Gson().toJson(value);
     }
+   
     
     
     

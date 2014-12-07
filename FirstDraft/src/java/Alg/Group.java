@@ -109,6 +109,15 @@ public class Group {
 		return new Gson().toJson(value);
 	}
 	
+	public String getValueString(){
+		String str = "";
+		for(String string: value){
+			str += string;
+			str += " ";
+		}
+		return str;
+	}
+	
 	public String getNamesJson(){
 		ArrayList<String> names = new ArrayList<String>();
 		for(User user : usersList){
