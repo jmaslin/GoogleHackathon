@@ -115,6 +115,7 @@
 	var shopsTitle = "The Shop View";
 
 	$( document ).ready(function() {
+            
 		getConversation("hello");
 		// $('#listings').fadeTo(0, 0, function() {
 		// })
@@ -169,12 +170,15 @@
 		$('#verifyCode').hide();
 		$('#verifyPhoneBtn').html("Get Code");
 		$('#phoneNum').val("");
+                $('#modal-posts').empty();
+                getConversation(modalName);
+                
 	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  var modal = $(this);
 	  modal.find('.modal-title').html('<h2>'+modalName+' <small>Created by <strong>'+modalCreator+'</small></h2>');
 	  modal.find('#modal-tags').html(modalTags);
-	 	if (modalType == "convo") {
+	 	if (modalType == "convos") {
 	  	modal.find('.modal-footer #join').html("Join");
 	 	  modal.find('.modal-footer #leave').html("Leave");
 	  }
@@ -192,15 +196,17 @@
 			type: "get", 
 			url: "/FirstDraft/ConversationServlet", 
 			data: "modelPosts="+modelName, 
+                        dataType: 'html',
 			success: function(data) {
 
 				data = $.parseJSON(data);
 
 				$.each(data, function(i, v) {
-                                        console.log(i+" "+v);
-					post = ""; // TODO: PARSE DATA, GET EACH POST (DATE. PERSON, TEXT)
+                                    
+                                        //console.log(i+" "+v);
+					post = '<p class="chat">'+v+'</p>';
 
-					$('.modal #chatModal #modal-posts').append(post);
+					$('#modal-posts').append(post);
 				});
 			}
 		});
