@@ -5,8 +5,10 @@
  */
 
 import Alg.Group;
+import Alg.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +24,15 @@ public class ConversationServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
         String groupName = req.getParameter("modalPosts");
-        
+        Alg.AlgUtil.GRP.createUser("name", "", "");
+        User origin = Alg.AlgUtil.GRP.getUser("name");
+        Alg.AlgUtil.GRP.addGroup("hello", origin , new ArrayList<String>(), new ArrayList<String>(), "convo");
+        Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "bonjour");
+        Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "hello");
+        Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "hola");
+        Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "ni hao");
+        Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "aloha");
+        Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "konichiwa");
         Group g = Alg.AlgUtil.GRP.getGroup(groupName);
         
         String json = g.getValueJson();
