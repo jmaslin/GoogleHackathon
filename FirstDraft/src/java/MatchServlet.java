@@ -48,8 +48,8 @@ public class MatchServlet extends HttpServlet {
 
             String phone = req.getParameter("contactPhone");
 
-            String contact = req.getParameter("contactPhone");
-
+            String email = req.getParameter("contactEmail");
+            System.out.println("here");
 
             
             double lat = Double.parseDouble(locLat);
@@ -58,11 +58,7 @@ public class MatchServlet extends HttpServlet {
             
         try {
 
-
-          
-
-
-           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(lat, lng), contact, "hello ", "hello");
+           ComparableRequestQuery t = Alg.AlgUtil.ALG.newQuery(action, item, new Point2D.Double(lat, lng), "", "hello ", "hello");
           
 
            if (t != null){
