@@ -174,7 +174,7 @@
 	  var modal = $(this);
 	  modal.find('.modal-title').html('<h2>'+modalName+' <small>Created by <strong>'+modalCreator+'</small></h2>');
 	  modal.find('#modal-tags').html(modalTags);
-	 	if (modalType == "convo") {
+	 	if (modalType == "convos") {
 	  	modal.find('.modal-footer #join').html("Join");
 	 	  modal.find('.modal-footer #leave').html("Leave");
 	  }
@@ -197,6 +197,7 @@
 				data = $.parseJSON(data);
 
 				$.each(data, function(i, v) {
+
 
 					post = ""; // TODO: PARSE DATA, GET EACH POST (DATE. PERSON, TEXT)
 
