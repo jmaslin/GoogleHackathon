@@ -2,14 +2,16 @@
 
 <html lang="en">
 	<head>
-
-		<title>GoogleHack4</title>
+		<title>CornHub</title>
 
 		<script src="assets/js/jquery-2.1.1.min.js"></script>
 
 		<!-- BOOTSTRAP -->
 		<link href="assets/css/bootstrap.css" rel="stylesheet" />
 		<script src="assets/js/bootstrap.js"></script>
+
+    <!-- PURE -->
+    <!-- <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> -->
 
 		<!-- CUSTOM -->
 		<link href="assets/css/design.css" rel="stylesheet" />
@@ -21,75 +23,80 @@
 
 	<body>
  
-  	<div id="topContainer" class="container-fluid">
+  	<div id="topContainer" class="container">
 
-  		<div id="top" class="row-fluid text-center">
+  		<div id="top" class="row text-center">
   			<div class="col-sm-6 col-sm-offset-3">
-  				<h1 class="title">GoodsX<br /><small>Connecting people <em>the smart way.</em></small></h1>
+  				<h1 class="title">MaizeHub<br /><small>Connecting people <em>the smart way.</em></small></h1>
   				<hr>
   			</div>
   		</div>
 
-  		<div class="row-fluid text-center">
+
+      <div class="row text-center" id="optionButtons">
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+          <button id="buyOption" value="1" class="btn btn-primary btn-lg expandBtn"><strong>Buy</strong> goods or <strong>request</strong> market services.</button>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3 col-xs-12">
+          <button id="sellOption" value="2" class="btn btn-success btn-lg expandBtn"><strong>Sell</strong> goods or <strong>offer</strong> market services.</button>
+        </div>
+      </div>
+
+  		<div class="row text-center">
   			<div class="col-sm-6 col-sm-offset-3">
-  				<h2>Choose some options.</h2>
-  				<br>
 
           <form id="submitReq">
+              <input type="hidden" name="purposeRadio" id="purposeRadio" value="">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="userName" id="userName" autocomplete="off" placeholder="Preferred Name">
+              </div>
   					  <div class="form-group">
-    						<label for="purpose">Purpose</label>
+<!--     						<label for="purpose">Purpose</label>
     						<div class="radio">
     							<label>
-    								<input type="radio" name="purposeRadio" id="purpose1" value="1">
+    								<input type="radio" name="purposeRadio" id="purpose1" value="1" autocomplete="off">
     								I want
     							</label>
     							<label>
-    								<input type="radio" name="purposeRadio" id="purpose2" value="2">
+    								<input type="radio" name="purposeRadio" id="purpose2" value="2" autocomplete="off">
     								I have
     							</label>
     						</div>
-              </div>
+              </div> -->
   						<div class="form-group">
   							<label for="request">Request</label>
-  							<input type="text" class="form-control" name="requestType" id="requestType" autocomplete="off" placeholder="Enter what you have or need.">
+  							<input type="text" class="form-control" name="requestType" id="requestType" autocomplete="off" placeholder="[Quantity] Item or Service">
   						</div>
   						<div class="form-group">
   							<label for="location">Location</label>
-  							<input type="text" class="form-control" name="location" id="location" autocomplete="off" placeholder="Enter your general location.">
+  							<input type="text" class="form-control" name="location" id="location" autocomplete="off" placeholder="Where are you!">
   						</div>
-  						<label for="contact">Contact Method(s)</label>
-  						<div class="input-group">
-  							<span class="input-group-addon">
-  								<input id="emailCheck" type="checkbox">
-  							</span>
-  							<input type="text" class="form-control" name="contactEmail" id="contactEmail" autocomplete="off" placeholder="Email">
+  						<label for="contact">Contact Information</label>
+  						<div class="form-group">
+  							<!-- <span class="input-group-addon"> -->
+  								<!-- <input id="emailCheck" autocomplete="off" type="checkbox"> -->
+  							<!-- </span> -->
+  							<input type="text" class="form-control contact-area" name="contactEmail" id="contactEmail" autocomplete="off" placeholder="Email Address">
   						</div>
-  						<div class="input-group">
-  							<span class="input-group-addon">
-  								<input id="phoneCheck" type="checkbox">
-  							</span>
-  							<input type="text" class="form-control" name="contactPhone" id="contactPhone" autocomplete="off" placeholder="Phone">
+  						<div class="form-group">
+  							<!-- <span class="input-group-addon"> -->
+  								<!-- <input id="phoneCheck" autocomplete="off" type="checkbox"> -->
+  							<!-- </span> -->
+  							<input type="text" class="form-control contact-area" name="contactPhone" id="contactPhone" autocomplete="off" placeholder="Phone Number">
   						</div>
   						<!-- TODO: Make this better. All of it. -->
   						<br>
-  						<!--<div class="form-group">
+  						<!-- <div class="form-group">
   							<label for="request">Password (Optional, create an account to manage requests.)</label>
   							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
   						  <input type="password" class="form-control" name="passwordConf" id="passwordConf" placeholder="Password Confirm">			
   						</div> -->
-       	  	  <button id="submitRequest" type="submit" class="btn btn-default">Submit</button>
+       	  	  <button id="submitRequest" type="submit" class="btn btn-info btn-lg">Submit</button>
        	    </form>
 
   			</div>
   		</div>
-
-      <div class="row-fluid text-center">
-        <div class="col-sm-6 col-sm-offset-3">
-          <footer>
-            Created By Team Fantastic 404: Not Found
-          </footer>
-        </div>
-      </div>
 
   	</div>
 
@@ -104,6 +111,36 @@
 
       var locLat = "0";
       var locLng = "0";
+
+      console.log();
+
+      $('#contactEmail').parent().fadeTo(0, 0.5);
+      $('#contactPhone').parent().fadeTo(0, 0.5);
+
+      $('form#submitReq').hide();
+      // $('form#submitReq').fadeTo(0, 0);
+
+    });
+
+    $('.expandBtn').on("click", function() {
+      $('.expandBtn').not(this).fadeTo(500, 0.4);
+      $(this).fadeTo(500, 0.85);
+
+      $('form#submitReq label[for=request]').html('<button class="btn btn-success btn-lg"><strong>Sell</strong></button> Something');
+      option = 2;
+      $('#purposeRadio').val("2");
+
+      if ($(this).attr('id') == "buyOption") {
+        option = 1;
+        $('form#submitReq label[for=request]').html('<button class="btn btn-primary btn-lg"><strong>Buy</strong></button> Something');
+        $('#purposeRadio').val("1");
+      }
+
+      $('form#submitReq').fadeIn("slow");
+    }); 
+
+    $('.contact-area').on("click", function(e) {
+      $(this).parent().fadeTo(250, 1);
     });
 
   	$('#submitRequest').on("click", function(e) {
@@ -114,6 +151,15 @@
 			}
 
 		});
+
+    $('input[type="checkbox"]').change(function(e) {
+
+      // e.preventDefault();
+      console.log($(this).closest('.input-group').attr('class'));
+
+      $(this).closest('.input-group').fadeTo(250, 1);
+    });
+
 
 		$('#location').on('change', function() {
 
@@ -168,7 +214,7 @@
 
 			request = $('#requestType').val();
 
-			if (request !== "") {
+			if (request != "") {
 				validReq = true;
 			}
 
@@ -177,6 +223,7 @@
 		function submitToJSON() {
 
       var userData = {
+        "name": $('#userName').val(), 
         "purpose": $('[name=purposeRadio]').val(), 
         "request": $('#requestType').val(), 
         "locLat": locLat, 
@@ -184,14 +231,20 @@
         "contactPhone": $('#contactPhone').val(), 
         "contactEmail": $('#contactEmail').val()
       };
-
+      var jsonStr = JSON.stringify(userData);
+      //alert(jsonStr);
 			$.ajax({
 				type: "post", 
+                                
 
-				url: "MatchServlet",      
-				data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
-//
+				url: "MatchServlet",     
+                                data: "&data="+jsonStr,
+				//data: $('#submitReq').serialize()+"&locLat="+locLat+"&locLng="+locLng, 
+//                              
 //				url: "MatchServlet.java",      
+//				data: userData, 
+
+//				url: "/MatchServlet.java",      
 //				data: userData, 
 
 				dataType: "html", 

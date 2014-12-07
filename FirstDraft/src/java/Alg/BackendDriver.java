@@ -1,7 +1,7 @@
 /**
  * 
  */
-package hackathon.google.nyc;
+package Alg;
 
 import java.awt.geom.Point2D;
 import java.io.FileNotFoundException;
@@ -11,8 +11,6 @@ import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
-
-import com.google.gson.Gson;
 
 /**
  * @author Cam
@@ -156,8 +154,6 @@ public class BackendDriver {
 		return d;
 		}
 	
-	public String getJson(){
-    	return new Gson().toJson(list);
-    }
+
 
 }

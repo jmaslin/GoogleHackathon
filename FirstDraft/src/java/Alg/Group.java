@@ -1,7 +1,7 @@
 /**
  * 
  */
-package hackathon.google.nyc;
+package Alg;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class Group {
 	protected User theArchitect;
 	protected String groupName;
         //store or group
-       // private String type;
+        private String type;
 	protected ArrayList<User> usersList;
 	protected ArrayList<String> tags;
 	protected ArrayList<String> value;

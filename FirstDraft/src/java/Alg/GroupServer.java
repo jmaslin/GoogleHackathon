@@ -1,10 +1,14 @@
 /**
  * 
  */
-package hackathon.google.nyc;
+package Alg;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+
+
+import javax.security.auth.login.CredentialNotFoundException;
 
 
 /**
@@ -20,7 +24,7 @@ public class GroupServer {
 	private HashMap<String,ArrayList<String>> tagList;
 	
 	public GroupServer(){
-        userList = new HashMap<String, User>();
+                userList = new HashMap<String, User>();
 		groupList = new HashMap<String,Group>();
 		tagList = new HashMap<String,ArrayList<String>>();
 	}
@@ -51,16 +55,6 @@ public class GroupServer {
 	public void addGroup(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> chat){
 		Group group = new Group(groupName, theArchitect, tags, chat);
 		addGroup(group);
-	}
-	
-	/**
-	 * @param groupName Name of group to add to database
-	 * @param theArchitect Creator of the database
-	 * @param tags Tags associated with group
-	 */
-	public void addShop(String shopName, User theArchitect, ArrayList<String> tags, ArrayList<String> chat){
-		Shop shop = new Shop(shopName, theArchitect, tags, chat);
-		addGroup(shop);
 	}
 	
 	/**

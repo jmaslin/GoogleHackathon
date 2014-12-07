@@ -1,7 +1,7 @@
 /**
  * 
  */
-package hackathon.google.nyc;
+package Alg;
 
 import java.util.ArrayList;
 
