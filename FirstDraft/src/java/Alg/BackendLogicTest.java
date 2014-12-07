@@ -62,7 +62,7 @@ public class BackendLogicTest {
 		value.add("maize: 10");
 		value.add("grain: 10");
 		value.add("popcorn: 10");
-		Shop shop = new Shop("first", new User("Frank Underwood", "123456789", "me@test.com"), tags, value);
+		Shop shop = new Shop("first", new User("Frank Underwood", "123456789", "me@test.com"), tags, value, "shops");
 		
 		System.out.println(shop.getJson());
 		

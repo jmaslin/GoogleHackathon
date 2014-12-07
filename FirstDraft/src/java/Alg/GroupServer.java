@@ -4,7 +4,10 @@
 package hackathon.google.nyc;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+
+import com.google.gson.Gson;
 
 
 /**
@@ -48,8 +51,8 @@ public class GroupServer {
 	 * @param theArchitect Creator of the database
 	 * @param tags Tags associated with group
 	 */
-	public void addGroup(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> chat){
-		Group group = new Group(groupName, theArchitect, tags, chat);
+	public void addGroup(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> chat, String type){
+		Group group = new Group(groupName, theArchitect, tags, chat,type);
 		addGroup(group);
 	}
 	
@@ -58,8 +61,8 @@ public class GroupServer {
 	 * @param theArchitect Creator of the database
 	 * @param tags Tags associated with group
 	 */
-	public void addShop(String shopName, User theArchitect, ArrayList<String> tags, ArrayList<String> chat){
-		Shop shop = new Shop(shopName, theArchitect, tags, chat);
+	public void addShop(String shopName, User theArchitect, ArrayList<String> tags, ArrayList<String> chat,String type){
+		Shop shop = new Shop(shopName, theArchitect, tags, chat,type);
 		addGroup(shop);
 	}
 	
@@ -134,7 +137,19 @@ public class GroupServer {
 		return userList.get(name).getGroups();
 	}
 	
-	
+	/**
+	 * @return returns the groups a user is in
+	 */
+	public String getGroupsByTypeJson(String type){
+		ArrayList<Group> groups = new ArrayList<Group>();
+		Collection<Group> collection = groupList.values();
+		for(Group g: collection){
+			if (g.getType().equals(type)){
+				groups.add(g);
+			}
+		}
+		return new Gson().toJson(groups);
+	}
 	
 	
 

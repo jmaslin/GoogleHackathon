@@ -18,8 +18,8 @@ public class Shop extends Group{
 
 
     
-    public Shop(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> value) {
-        super(groupName, theArchitect, tags, value);
+    public Shop(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> value, String type) {
+        super(groupName, theArchitect, tags, value,type);
     }
     
     @Override
