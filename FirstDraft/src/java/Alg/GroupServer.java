@@ -149,12 +149,16 @@ public class GroupServer {
 	 */
 	public String getGroupsByTypeJson(String type){
 		ArrayList<Group> groups = new ArrayList<Group>();
+//                System.out.println("a");
 		Collection<Group> collection = groupList.values();
+//                System.out.println(collection.size());
 		for(Group g: collection){
+   
 			if (g.getType().equals(type)){
 				groups.add(g);
 			}
 		}
+
 		return new Gson().toJson(groups);
 	}
 	
