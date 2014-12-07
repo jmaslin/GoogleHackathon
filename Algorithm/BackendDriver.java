@@ -75,7 +75,7 @@ public class BackendDriver {
 		
 		if(list.get(other).containsKey(keyword)){  //if opposite type is found			
 			list.get(other).put(keyword, updateDistance(list.get(other).get(keyword),coord));			//update distances of other type
-			if(list.get(other).get(keyword).peek().getDistance() <= maxDist){
+			if((list.get(other).get(keyword).peek() != null) && list.get(other).get(keyword).peek().getDistance() <= maxDist){
 				foundQuery = list.get(other).get(keyword).poll();
 				System.out.println(foundQuery.toString() + ": " + name);
 			} else {			

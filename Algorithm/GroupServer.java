@@ -6,6 +6,8 @@ package hackathon.google.nyc;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.security.auth.login.CredentialNotFoundException;
+
 /**
  * @author Cam
  *
@@ -13,6 +15,7 @@ import java.util.HashMap;
 
 public class GroupServer {
 	
+	private HashMap<String,User> userList;
 	private HashMap<String,Group> groupList;
 	private HashMap<String,ArrayList<String>> tagList;
 	
@@ -74,5 +77,28 @@ public class GroupServer {
 			tagList.get(tag).remove(group.getName());
 		}
 	}
+	
+	/**
+	 * @param user Its a user to add to the list
+	 */
+	public void createUser(User user){
+		userList.put(user.getName(),user);
+	}
+	
+	/**
+	 * @param user Its a user to add to the list
+	 */
+	public void createUser(String name, String number){
+		User user = new User(name, number);
+		createUser(user);
+	}
+	
+	/**
+	 * @param user User to remove
+	 */
+	public void removeUser(User user){
+		userList.remove(user.getName());
+	}
+	
 	
 }

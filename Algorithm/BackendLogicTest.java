@@ -16,7 +16,7 @@ public class BackendLogicTest {
 		Point2D.Double coord = new Point2D.Double();
 		coord.x = 1;
 		coord.y = 1;
-		test.newQuery("1", "corn",coord,"Bob","9","9");
+		test.newQuery("2", "corn",coord,"Bob","9","9");
 		coord = new Point2D.Double();
 		coord.x = 5.1;
 		coord.y = 4.9;

@@ -45,4 +45,12 @@ public class User {
 		return groups;
 	}
 	
+	/**
+	 * @return returns the names of the user
+	 * 
+	 */
+	public String  getName(){
+		return name;
+	}
+	
 }
