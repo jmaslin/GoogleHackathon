@@ -6,6 +6,11 @@ package hackathon.google.nyc;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+<<<<<<< HEAD
+=======
+import javax.security.auth.login.CredentialNotFoundException;
+
+>>>>>>> 068d4485faaa9d65c15015af711f0064ae25f2ac
 /**
  * @author Cam
  *
@@ -13,6 +18,10 @@ import java.util.HashMap;
 
 public class GroupServer {
 	
+<<<<<<< HEAD
+=======
+	private HashMap<String,User> userList;
+>>>>>>> 068d4485faaa9d65c15015af711f0064ae25f2ac
 	private HashMap<String,Group> groupList;
 	private HashMap<String,ArrayList<String>> tagList;
 	
@@ -75,4 +84,54 @@ public class GroupServer {
 		}
 	}
 	
+<<<<<<< HEAD
+=======
+	/**
+	 * @param user Its a user to add to the list
+	 */
+	public void createUser(User user){
+		userList.put(user.getName(),user);
+	}
+	
+	/**
+	 * @param user Its a user to add to the list
+	 */
+	public void createUser(String name, String number){
+		User user = new User(name, number);
+		createUser(user);
+	}
+	
+	/**
+	 * @param user User to remove
+	 */
+	public void removeUser(User user){
+		userList.remove(user.getName());
+	}
+	
+	/**
+	 * @param user User to get
+	 * @return returns the user with specified name
+	 */
+	public User getUser(String name){
+		return userList.get(name);
+	}
+	
+	/**
+	 * @return returns the all the users
+	 */
+	public HashMap<String,User> getAllUsers(){
+		return userList;
+	}
+	
+	/**
+	 * @return returns the groups a user is in
+	 */
+	public ArrayList<String> getUserGroups(String name){
+		return userList.get(name).getGroups();
+	}
+	
+	
+	
+	
+>>>>>>> 068d4485faaa9d65c15015af711f0064ae25f2ac
 }
