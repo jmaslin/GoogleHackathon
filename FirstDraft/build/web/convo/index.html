@@ -66,7 +66,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Close</span><span class="sr-only"></span></button>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="chatModal">Chat</h4>
         <small><strong>Tags: </strong><span id="modal-tags"></span></small>
       </div>
@@ -76,12 +76,14 @@
        	</div>
        	<div class="row">
        		<div class="col-sm-8 pull-right">
-		       	<form class="form-inline " id="enterPhone">
+		       	<form class="form-inline" id="enterPhoneNumForm">
+		       		<hr />
 		       	  <p>You will need to enter a verification code before completing this action.</p>
-		       		<div class="form-group">
-		       			<input type="text" id="phoneNum" class="form-control" autocomplete="off" placeholder="Phone Number">
-		       			<button id="verifyPhone" class="btn btn-info pull-right">Verify</button>
-		       		</div>
+		       	  <button id="verifyPhoneBtn" class="btn btn-info pull-right" type="button">Get Code</button>
+		       		<input type="text" id="phoneNum" class="form-control pull-right" autocomplete="off" placeholder="Phone Number">
+		       		<input type="text" id="verifyCode" class="form-control pull-right" autocomplete="off" placeholder="Verification Code">
+		       			<!-- <span class="input-group-btn"> -->
+		       			<!-- </span> -->
 	       		</form>
 	       	</div>
        	</div>
@@ -101,13 +103,16 @@
 	
 	var tagsList = new Array();
 
+	var convoTitle = "The Convo Bay";
+	var shopsTitle = "The Shop View";
+
 	$( document ).ready(function() {
 		
-		$('#listings').fadeTo(0, 0, function() {
-			getListings('convos');	
-		})
-		
-		$('#listings').delay(200).fadeTo(800, 1);
+		// $('#listings').fadeTo(0, 0, function() {
+		// })
+		getListings('convos');	
+
+		// $('#listings').delay(200).fadeTo(800, 1);
 
 	});
 
@@ -118,22 +123,31 @@
 			getListings('convos');
 			$('#listings').fadeTo(500, 1);
 		});
-		$('#pageViewTitle').fadeToggle(500, function() {
-			$('#pageViewTitle').html("The Convo Bay");
-			$('#pageViewTitle').fadeToggle(500);
-		});
+
+		if (convoTitle != $('#pageViewTitle').html()) {
+			$('#pageViewTitle').fadeToggle(500, function() {
+				$('#pageViewTitle').html(convoTitle);
+				$('#pageViewTitle').fadeToggle(500);
+			});	
+		}
+
 	});
+
 	$('#views #shop').on('click', function() {
 		$('#listings').fadeTo(500, 0, function() {
 			$('#listings').empty();
 			getListings('shops');
 			$('#listings').fadeTo(500, 1);
 		});
-		$('#pageViewTitle').fadeToggle(500, function() {
-			$('#pageViewTitle').html("The Shop View");
-			$('#pageViewTitle').fadeToggle(500);
-		});		
+		if (shopsTitle != $('#pageViewTitle').html()) {
+			$('#pageViewTitle').fadeToggle(500, function() {
+				$('#pageViewTitle').html(shopsTitle);
+				$('#pageViewTitle').fadeToggle(500);
+			});				
+		}
+	
 	});
+	// END REQ
 
 	$('#chatModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget) // Button that triggered the modal
@@ -141,7 +155,11 @@
 	  var modalTags = button.data('modal-tags')
 	  var modalType = button.data('modal-type')
 
-		$('#enterPhone').fadeTo(0, 0);
+		$('#enterPhoneNumForm').fadeTo(0, 0);
+		$('#phoneNum').show();
+		$('#verifyCode').hide();
+		$('#verifyPhoneBtn').html("Get Code");
+		$('#phoneNum').val("");
 	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  var modal = $(this)
@@ -184,7 +202,7 @@
 
 		$.ajax({
 			type: "get", 
-			url: "text.php", 
+			url: "ListingsServlet", 
 			data: "type="+type, 
 			success: function(data) {
 
@@ -193,12 +211,6 @@
 				$.each(data, function(i, v) {
 
 					var tags = v.tags.join(", ");
-					for (x=0; x<v.tags.length; x++) {
-						if ($(document).find( $('span').html(v.tags[x] )) > 0) {
-							console.log("TEST");
-						}
-						// console.log(v.tags[x]);
-					}
 
 					var listing = ('\
 						<div id="'+i+'" class="chatGroup col-sm-3 col-xs-4" tags="'+v.tags+'">\
@@ -207,7 +219,17 @@
 							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#chatModal" data-modal-name="'+v.name+'" data-modal-tags="'+tags+'" data-modal-type="'+v.type+'">'+v.name+'</button>\
 						</div>\
 					');
+
+					var listing = $(listing).hide();
 					$('#listings').append(listing);
+
+					$('#listings div').last().fadeTo((i*400), 1);
+
+					// $('#listings div').last().show();
+					// $('#listings div').last().hide(function() {
+					// 	$(this).fadeTo((i*100), 1);
+					// });
+
 				});
 				
 				//$('#listings').trigger('create');
@@ -217,14 +239,28 @@
 	}
 
 	$('#modal-phone-buttons').on('click', function() {
-		console.log("g");
-		$('#enterPhone').fadeTo(500, 1);
+		$('#enterPhoneNumForm').fadeTo(500, 1);
+	});
+
+	$('#verifyPhoneBtn').on('click', function() {
+		$('#phoneNum').slideUp("fast", function() {
+			$('#verifyCode').slideDown("fast");
+		});
+		$('#verifyPhoneBtn').slideUp("fast", function() {
+			$(this).html("Verify");
+			$(this).slideDown("fast");
+		});
 	});
 
 	function sendPhoneRequest(phone, name, action) {
 
 		$.ajax({
 			type: "post", 
+			url: "", 
+			data: "phone="+phone+"&name="+name+"&action="+action, 
+			success: function(data) {
+
+			}
 
 		});
 	}
