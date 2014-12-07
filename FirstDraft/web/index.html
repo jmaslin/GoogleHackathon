@@ -2,7 +2,7 @@
 
 <html lang="en">
 	<head>
-		<title>GoogleHack4</title>
+		<title>CornHub</title>
 
 		<script src="assets/js/jquery-2.1.1.min.js"></script>
 
@@ -27,7 +27,7 @@
 
   		<div id="top" class="row text-center">
   			<div class="col-sm-6 col-sm-offset-3">
-  				<h1 class="title">GoodsX<br /><small>Connecting people <em>the smart way.</em></small></h1>
+  				<h1 class="title">MaizeHub<br /><small>Connecting people <em>the smart way.</em></small></h1>
   				<hr>
   			</div>
   		</div>
@@ -46,6 +46,7 @@
   			<div class="col-sm-6 col-sm-offset-3">
 
           <form id="submitReq">
+              <input type="hidden" name="purposeRadio" id="purposeRadio" value="">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="userName" id="userName" autocomplete="off" placeholder="Preferred Name">
@@ -127,10 +128,12 @@
 
       $('form#submitReq label[for=request]').html('<button class="btn btn-success btn-lg"><strong>Sell</strong></button> Something');
       option = 2;
+      $('#purposeRadio').val("2");
 
       if ($(this).attr('id') == "buyOption") {
         option = 1;
         $('form#submitReq label[for=request]').html('<button class="btn btn-primary btn-lg"><strong>Buy</strong></button> Something');
+        $('#purposeRadio').val("2");
       }
 
       $('form#submitReq').fadeIn("slow");
