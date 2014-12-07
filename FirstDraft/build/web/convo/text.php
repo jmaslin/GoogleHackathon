@@ -54,34 +54,35 @@ if ($_GET['type'] == "shops") {
 			"name" => "SHOP1", 
 			"creator" => "name",
 			"type" => "shops",
-			"tags" => array("one", "two", "three")
+			"tags" => array("one", "two", "atan")
 		),
 		array(
 			"name" => "SHOP12", 
 			"creator" => "lols",
 			"type" => "shops",
-			"tags" => array("one", "two", "three")
+			"tags" => array("one", "two", "rg")
 		),
 		array(
 			"name" => "SHOP134", 
 			"creator" => "name",
 			"type" => "shops",
-			"tags" => array("one", "two", "three")
+			"tags" => array("one", "two", "g")
 		),
 		array(
 			"name" => "mcdonalds", 
 			"creator" => "lols",
 			"type" => "shops",
-			"tags" => array("one", "two", "three")
+			"tags" => array("one", "two", "aaa")
 		),
 		array(
 			"name" => "lolshops", 
 			"creator" => "name",
 			"type" => "shops",
-			"tags" => array("one", "two", "three")
+			"tags" => array("one", "two", "thrrgaagee")
 		)
 	);	
 }
+
 
 	echo json_encode($groups);
 
