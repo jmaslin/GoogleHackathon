@@ -5,6 +5,8 @@ package hackathon.google.nyc;
 
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 /**
  * @author Cam
  *
@@ -97,6 +99,22 @@ public class Group {
 	 */
 	public String getName(){
 		return groupName;
+	}
+	
+	public String getTagsJson(){
+		return new Gson().toJson(tags);
+	}
+	
+	public String getValueJson(){
+		return new Gson().toJson(value);
+	}
+	
+	public String getNamesJson(){
+		ArrayList<String> names = new ArrayList<String>();
+		for(User user : usersList){
+			names.add(user.getName());
+		}
+		return new Gson().toJson(names);
 	}
 	
 	/**
