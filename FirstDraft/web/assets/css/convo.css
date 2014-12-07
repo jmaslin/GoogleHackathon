@@ -52,6 +52,14 @@ body {
 	display: inline-block;
 }
 
-#enterPhone {
+#enterPhoneNumForm {
 	text-align: right;
+}
+
+#enterPhoneNumForm {
+	font-size: ;
+}
+
+input[type=text] {
+	height: 2.25em;
 }

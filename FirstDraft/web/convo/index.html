@@ -103,6 +103,9 @@
 	
 	var tagsList = new Array();
 
+	var convoTitle = "The Convo Bay";
+	var shopsTitle = "The Shop View";
+
 	$( document ).ready(function() {
 		
 		$('#listings').fadeTo(0, 0, function() {
@@ -120,22 +123,27 @@
 			getListings('convos');
 			$('#listings').fadeTo(500, 1);
 		});
+
+		if (convoTitle != $('#pageViewTitle').html())
 		$('#pageViewTitle').fadeToggle(500, function() {
-			$('#pageViewTitle').html("The Convo Bay");
+			$('#pageViewTitle').html(convoTitle);
 			$('#pageViewTitle').fadeToggle(500);
 		});
 	});
+
 	$('#views #shop').on('click', function() {
 		$('#listings').fadeTo(500, 0, function() {
 			$('#listings').empty();
 			getListings('shops');
 			$('#listings').fadeTo(500, 1);
 		});
+		if (shopsTitle != $('#pageViewTitle').html())
 		$('#pageViewTitle').fadeToggle(500, function() {
-			$('#pageViewTitle').html("The Shop View");
+			$('#pageViewTitle').html(shopsTitle);
 			$('#pageViewTitle').fadeToggle(500);
 		});		
 	});
+	// END REQ
 
 	$('#chatModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget) // Button that triggered the modal
@@ -234,6 +242,11 @@
 
 		$.ajax({
 			type: "post", 
+			url: "", 
+			data: "phone="+phone+"&name="+name+"&action="+action, 
+			success: function(data) {
+
+			}
 
 		});
 	}
