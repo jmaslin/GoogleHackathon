@@ -2,13 +2,37 @@
 	
 	$groups = array(
 		array(
-			"name" => "group1", 
+			"name" => "math", 
 			"creator" => "name",
 			"members" => "Bob",
 			"tags" => "group, hi"
 		),
 		array(
-			"name" => "group2", 
+			"name" => "trade", 
+			"creator" => "lols",
+			"members" => "Bob",
+			"tags" => "group, hi"
+		),
+		array(
+			"name" => "store", 
+			"creator" => "name",
+			"members" => "Bob",
+			"tags" => "group, hi"
+		),
+		array(
+			"name" => "mcdonalds", 
+			"creator" => "lols",
+			"members" => "Bob",
+			"tags" => "group, hi"
+		),
+		array(
+			"name" => "police", 
+			"creator" => "name",
+			"members" => "Bob",
+			"tags" => "group, hi"
+		),
+		array(
+			"name" => "watch", 
 			"creator" => "lols",
 			"members" => "Bob",
 			"tags" => "group, hi"
