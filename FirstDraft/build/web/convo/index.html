@@ -211,15 +211,11 @@
 
 		$.ajax({
 			type: "get", 
-<<<<<<< HEAD
 			url: "/FirstDraft/ListingsServlet", 
-=======
-			url: "/FirstDraft/ListingServlet", 
->>>>>>> origin/dev
 			data: "type="+type, 
                         dataType: 'html',
 			success: function(data) {
-                                alert(data);
+                                //alert(data);
 				data = $.parseJSON(data);
 				console.log(data);
 				$.each(data, function(i, v) {
