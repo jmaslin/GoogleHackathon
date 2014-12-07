@@ -38,6 +38,7 @@ public class Group {
 		this.tags = tags;
        this.value = value;
        this.type = type;
+       usersList = new ArrayList<User>();
 	}
 	
 	public String getType() {

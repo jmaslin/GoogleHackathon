@@ -153,7 +153,7 @@ public class GroupServer {
 		Collection<Group> collection = groupList.values();
 //                System.out.println(collection.size());
 		for(Group g: collection){
-   
+                        System.out.println(type+" "+g.getType().equals(type));
 			if (g.getType().equals(type)){
 				groups.add(g);
 			}

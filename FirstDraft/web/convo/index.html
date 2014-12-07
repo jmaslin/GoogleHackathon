@@ -219,14 +219,14 @@
 				data = $.parseJSON(data);
 				console.log(data);
 				$.each(data, function(i, v) {
-
+                                        console.log(i+" "+v);
 					var tags = v.tags.join(", ");
 
 					var listing = ('\
 						<div id="'+i+'" class="chatGroup col-sm-3 col-xs-4" tags="'+v.tags+'">\
 							<a href="chat#'+i+'" class="chatExpand imageLink">\
 							<img class="img img-responsive img-thumbnail" src="http://placehold.it/150x100">\
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#chatModal" data-modal-name="'+v.name+'" data-modal-tags="'+tags+'" data-modal-type="'+v.type+'" data-modal-creator="'+v.architect+'">'+v.name+'</button>\
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#chatModal" data-modal-name="'+v.groupName+'" data-modal-tags="'+tags+'" data-modal-type="'+v.type+'" data-modal-creator="'+v.theArchitect.name+'">'+v.groupName+'</button>\
 						</div>\
 					');
 

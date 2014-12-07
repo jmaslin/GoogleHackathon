@@ -33,7 +33,7 @@ public class ListingsServlet extends HttpServlet {
         System.out.println("3");
         Alg.AlgUtil.GRP.addGroup("hello", origin , new ArrayList<String>(), new ArrayList<String>(), "shops");
         System.out.println("4");
-        String json = Alg.AlgUtil.GRP.getGroupsByTypeJson("shops");
+        String json = Alg.AlgUtil.GRP.getGroupsByTypeJson(type);
         System.out.println("5");
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
