@@ -100,5 +100,29 @@ public class GroupServer {
 		userList.remove(user.getName());
 	}
 	
+	/**
+	 * @param user User to get
+	 * @return returns the user with specified name
+	 */
+	public User getUser(String name){
+		return userList.get(name);
+	}
+	
+	/**
+	 * @return returns the all the users
+	 */
+	public HashMap<String,User> getAllUsers(){
+		return userList;
+	}
+	
+	/**
+	 * @return returns the groups a user is in
+	 */
+	public ArrayList<String> getUserGroups(String name){
+		return userList.get(name).getGroups();
+	}
+	
+	
+	
 	
 }
