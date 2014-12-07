@@ -4,44 +4,44 @@ if ($_GET['type'] == "convos") {
 	$groups = array(
 		array(
 			"name" => "lolsci", 
-			"creator" => "name",
+			"architect" => "name",
 			"type" => "convo",
 			"members" => "Bob",
 			"tags" => array("one", "two", "three")
 		),
 		array(
 			"name" => "trade", 
-			"creator" => "lols",
+			"architect" => "lols",
 			"type" => "convo",
 			"tags" => array("one", "two", "three")
 		),
 		array(
 			"name" => "store", 
-			"creator" => "name",
+			"architect" => "name",
 			"type" => "convo",
 			"tags" => array("one", "two", "three")
 		),
 		array(
 			"name" => "mcdonalds", 
-			"creator" => "lols",
+			"architect" => "lols",
 			"type" => "convo",
 			"tags" => array("one", "two", "three")
 		),
 		array(
-			"name" => "police-watch", 
-			"creator" => "name",
+			"name" => "police watch group", 
+			"architect" => "name",
 			"type" => "convo",
 			"tags" => array("one", "two", "three")
 		),
 		array(
-			"name" => "government-news", 
-			"creator" => "lols",
+			"name" => "government news", 
+			"architect" => "lols",
 			"type" => "convo",
 			"tags" => array("one", "two", "three")
 		),
 		array(
 			"name" => "commuity", 
-			"creator" => "lols",
+			"architect" => "lols",
 			"type" => "convo",
 			"tags" => array("one", "two", "three")
 		)
@@ -52,31 +52,31 @@ if ($_GET['type'] == "shops") {
 	$groups = array(
 		array(
 			"name" => "SHOP1", 
-			"creator" => "name",
+			"architect" => "name",
 			"type" => "shops",
 			"tags" => array("one", "two", "atan")
 		),
 		array(
 			"name" => "SHOP12", 
-			"creator" => "lols",
+			"architect" => "lols",
 			"type" => "shops",
 			"tags" => array("one", "two", "rg")
 		),
 		array(
 			"name" => "SHOP134", 
-			"creator" => "name",
+			"architect" => "name",
 			"type" => "shops",
 			"tags" => array("one", "two", "g")
 		),
 		array(
 			"name" => "mcdonalds", 
-			"creator" => "lols",
+			"architect" => "lols",
 			"type" => "shops",
 			"tags" => array("one", "two", "aaa")
 		),
 		array(
 			"name" => "lolshops", 
-			"creator" => "name",
+			"architect" => "name",
 			"type" => "shops",
 			"tags" => array("one", "two", "thrrgaagee")
 		)
