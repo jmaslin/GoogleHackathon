@@ -31,7 +31,7 @@ public class ListingsServlet extends HttpServlet {
         System.out.println("2");
         User origin = Alg.AlgUtil.GRP.getUser("name");
         System.out.println("3");
-        Alg.AlgUtil.GRP.addGroup("hello", origin , new ArrayList<String>(), new ArrayList<String>(), "shops");
+        Alg.AlgUtil.GRP.addGroup("bye", origin , new ArrayList<String>(), new ArrayList<String>(), "shops");
         System.out.println("4");
         String json = Alg.AlgUtil.GRP.getGroupsByTypeJson(type);
         System.out.println("5");

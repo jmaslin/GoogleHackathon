@@ -115,7 +115,8 @@
 	var shopsTitle = "The Shop View";
 
 	$( document ).ready(function() {
-		
+            
+		getConversation("hello");
 		// $('#listings').fadeTo(0, 0, function() {
 		// })
 		getListings('convos');	
@@ -169,12 +170,15 @@
 		$('#verifyCode').hide();
 		$('#verifyPhoneBtn').html("Get Code");
 		$('#phoneNum').val("");
+                $('#modal-posts').empty();
+                getConversation(modalName);
+                
 	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  var modal = $(this);
 	  modal.find('.modal-title').html('<h2>'+modalName+' <small>Created by <strong>'+modalCreator+'</small></h2>');
 	  modal.find('#modal-tags').html(modalTags);
-	 	if (modalType == "convo") {
+	 	if (modalType == "convos") {
 	  	modal.find('.modal-footer #join').html("Join");
 	 	  modal.find('.modal-footer #leave').html("Leave");
 	  }
@@ -187,20 +191,22 @@
 	});
 
 	function getConversation(modelName) {
-
+        
 		$.ajax({
 			type: "get", 
 			url: "/FirstDraft/ConversationServlet", 
-			data: "modalPosts="+modalName, 
+			data: "modelPosts="+modelName, 
+                        dataType: 'html',
 			success: function(data) {
 
 				data = $.parseJSON(data);
 
 				$.each(data, function(i, v) {
+                                    
+                                        //console.log(i+" "+v);
+					post = '<p class="chat">'+v+'</p>';
 
-					post = ""; // TODO: PARSE DATA, GET EACH POST (DATE. PERSON, TEXT)
-
-					$('.modal #chatModal #modal-posts').append(post);
+					$('#modal-posts').append(post);
 				});
 			}
 		});
@@ -213,7 +219,7 @@
 			type: "get", 
 			url: "/FirstDraft/ListingsServlet", 
 			data: "type="+type, 
-                        dataType: 'html',
+      dataType: 'html',
 			success: function(data) {
                                 //alert(data);
 				data = $.parseJSON(data);
@@ -244,9 +250,10 @@
 				
 				//$('#listings').trigger('create');
 			},
-                        error: function(data){
-                            alert("I BORKE");
-                        }
+    	error: function(data){
+     		console.log("Failed to grab.");
+     	}
+                        
 		});
 
 	}

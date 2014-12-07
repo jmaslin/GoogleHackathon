@@ -23,10 +23,14 @@ public class ConversationServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        String groupName = req.getParameter("modalPosts");
+        
+        String groupName = req.getParameter("modelPosts");
+        
         Alg.AlgUtil.GRP.createUser("name", "", "");
+        
         User origin = Alg.AlgUtil.GRP.getUser("name");
-        Alg.AlgUtil.GRP.addGroup("hello", origin , new ArrayList<String>(), new ArrayList<String>(), "convo");
+        
+        Alg.AlgUtil.GRP.addGroup("hello", origin , new ArrayList<String>(), new ArrayList<String>(), "convos");
         Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "bonjour");
         Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "hello");
         Alg.AlgUtil.GRP.getGroup("hello").sendValue("me", "hola");
@@ -36,6 +40,7 @@ public class ConversationServlet extends HttpServlet {
         Group g = Alg.AlgUtil.GRP.getGroup(groupName);
         
         String json = g.getValueJson();
+        System.out.println(json);
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
         res.getWriter().write(json);
