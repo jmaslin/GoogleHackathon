@@ -108,11 +108,11 @@
 
 	$( document ).ready(function() {
 		
-		$('#listings').fadeTo(0, 0, function() {
-			getListings('convos');	
-		})
-		
-		$('#listings').delay(200).fadeTo(800, 1);
+		// $('#listings').fadeTo(0, 0, function() {
+		// })
+		getListings('convos');	
+
+		// $('#listings').delay(200).fadeTo(800, 1);
 
 	});
 
@@ -124,11 +124,13 @@
 			$('#listings').fadeTo(500, 1);
 		});
 
-		if (convoTitle != $('#pageViewTitle').html())
-		$('#pageViewTitle').fadeToggle(500, function() {
-			$('#pageViewTitle').html(convoTitle);
-			$('#pageViewTitle').fadeToggle(500);
-		});
+		if (convoTitle != $('#pageViewTitle').html()) {
+			$('#pageViewTitle').fadeToggle(500, function() {
+				$('#pageViewTitle').html(convoTitle);
+				$('#pageViewTitle').fadeToggle(500);
+			});	
+		}
+
 	});
 
 	$('#views #shop').on('click', function() {
@@ -137,11 +139,13 @@
 			getListings('shops');
 			$('#listings').fadeTo(500, 1);
 		});
-		if (shopsTitle != $('#pageViewTitle').html())
-		$('#pageViewTitle').fadeToggle(500, function() {
-			$('#pageViewTitle').html(shopsTitle);
-			$('#pageViewTitle').fadeToggle(500);
-		});		
+		if (shopsTitle != $('#pageViewTitle').html()) {
+			$('#pageViewTitle').fadeToggle(500, function() {
+				$('#pageViewTitle').html(shopsTitle);
+				$('#pageViewTitle').fadeToggle(500);
+			});				
+		}
+	
 	});
 	// END REQ
 
@@ -215,7 +219,17 @@
 							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#chatModal" data-modal-name="'+v.name+'" data-modal-tags="'+tags+'" data-modal-type="'+v.type+'">'+v.name+'</button>\
 						</div>\
 					');
+
+					var listing = $(listing).hide();
 					$('#listings').append(listing);
+
+					$('#listings div').last().fadeTo((i*400), 1);
+
+					// $('#listings div').last().show();
+					// $('#listings div').last().hide(function() {
+					// 	$(this).fadeTo((i*100), 1);
+					// });
+
 				});
 				
 				//$('#listings').trigger('create');
