@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Alg;
+package hackathon.google.nyc;
 
 import java.awt.geom.Point2D;
 

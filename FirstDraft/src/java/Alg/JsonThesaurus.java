@@ -1,4 +1,4 @@
-package Alg;
+package hackathon.google.nyc;
 
 import java.io.FileOutputStream;
 import java.io.FileReader;

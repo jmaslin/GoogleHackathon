@@ -1,9 +1,10 @@
-package Alg;
+package hackathon.google.nyc;
 
 import java.awt.geom.Point2D;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.InvalidKeyException;
+import java.util.ArrayList;
 
 public class BackendLogicTest {
 	
@@ -48,6 +49,22 @@ public class BackendLogicTest {
 		test.newQuery("1", "maize",coord,"France","9","9");
 		
 		
+		System.out.println(test.getJson());
+		
+		GroupServer server = new GroupServer();
+		ArrayList<String> tags = new ArrayList<String>();
+		tags.add("test1");
+		tags.add("test2");
+		tags.add("test3");
+		tags.add("test4");
+		ArrayList<String> value = new ArrayList<String>();
+		value.add("corn: 10");
+		value.add("maize: 10");
+		value.add("grain: 10");
+		value.add("popcorn: 10");
+		Shop shop = new Shop("first", new User("Frank Underwood", "123456789", "me@test.com"), tags, value);
+		
+		System.out.println(shop.getJson());
 		
 		
 	}

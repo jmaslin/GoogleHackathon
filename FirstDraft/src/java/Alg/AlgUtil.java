@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Alg;
+package hackathon.google.nyc;
 
 /**
  *
@@ -11,4 +11,5 @@ package Alg;
  */
 public class AlgUtil {
     public static BackendDriver ALG = new BackendDriver();
+    public static GroupServer GRP = new GroupServer();
 }

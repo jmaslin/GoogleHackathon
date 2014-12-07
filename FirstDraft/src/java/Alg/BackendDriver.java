@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Alg;
+package hackathon.google.nyc;
 
 import java.awt.geom.Point2D;
 import java.io.FileNotFoundException;
@@ -11,6 +11,8 @@ import java.security.InvalidKeyException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+
+import com.google.gson.Gson;
 
 /**
  * @author Cam
@@ -47,30 +49,37 @@ public class BackendDriver {
 		
 		int id = 0;
 		int other = 1;
-		switch(type){
-		case "2": 			//service
+                 
+//		switch(type){
+//		case "2": 	System.out.println("here");
+                   //service
+                //System.out.println(type);
+                if(type.equals("2")){
 			id = 1;
 			other = 0;
-			break;
-		case "1":			//request
+   
+                }
+//		case "1": 	System.out.println("here");
+                else if (type.equals("1")){//request
 			id = 0;
 			other = 1;
-			break;
-		default:
+                }
+                else{
+                     
 				throw new InvalidKeyException();
 		}
-	
+                 
 //		for(int i = 0; i < thes.size();i++){
 //			if(list.get(id).containsKey(thes.get(i))||list.get(other).containsKey(thes.get(i))){
 //				keyword = thes.get(i);
 //				i = thes.size();
 //			}
 //		}
-		
+
 		
 		if(list.get(other).containsKey(keyword)){  //if opposite type is found			
 			list.get(other).put(keyword, updateDistance(list.get(other).get(keyword),coord));			//update distances of other type
-			if(list.get(other).get(keyword).peek().getDistance() <= maxDist){
+			if((list.get(other).get(keyword).peek() != null) &&(list.get(other).get(keyword).peek().getDistance() <= maxDist)){
 				foundQuery = list.get(other).get(keyword).poll();
 				System.out.println(foundQuery.toString() + ": " + name);
 			} else {			
@@ -147,6 +156,8 @@ public class BackendDriver {
 		return d;
 		}
 	
-
+	public String getJson(){
+    	return new Gson().toJson(list);
+    }
 
 }
