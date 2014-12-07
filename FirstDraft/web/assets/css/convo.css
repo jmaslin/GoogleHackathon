@@ -1,0 +1,29 @@
+/*
+ * MARKET CSS CLASS
+*/
+
+#sidebar, #main { /* Testing */
+	text-align: center;
+	padding-top: 15px;
+	border: 1px solid black;
+}
+
+#sidebar {
+	padding-top: 35px;
+}
+
+.chatGroup {
+	font-size: 18px;
+}
+
+.imageLink {
+	text-align: center;
+}
+
+.imageLink img {
+	display: block;
+}
+
+.imageLink a:hover {
+	text-decoration: none;
+}
