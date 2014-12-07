@@ -2,10 +2,14 @@
  * MARKET CSS CLASS
 */
 
+body {
+	font-size: 16px;
+}
+
 #sidebar, #main { /* Testing */
 	text-align: center;
 	padding-top: 15px;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 }
 
 #sidebar {
@@ -13,7 +17,15 @@
 }
 
 .chatGroup {
-	font-size: 18px;
+	font-size: 20px;
+	padding-bottom: 20px;
+}
+
+.chatGroup button {
+	width: 100%;
+	font-size: .75em;
+	white-space: normal;
+
 }
 
 .imageLink {
@@ -26,4 +38,20 @@
 
 .imageLink a:hover {
 	text-decoration: none;
+}
+
+/* VIEWS */
+#views button {
+	width: 100%;
+	margin-bottom: 10px;
+	white-space: normal;
+
+}
+
+#modal-phone-buttons {
+	display: inline-block;
+}
+
+#enterPhone {
+	text-align: right;
 }
