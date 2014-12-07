@@ -162,6 +162,8 @@ public class GroupServer {
 		return new Gson().toJson(groups);
 	}
 	
-	
+	public  HashMap<String,User>  getUserList(){
+            return userList;
+        }
 
 }
