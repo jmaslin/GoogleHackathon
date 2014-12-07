@@ -181,7 +181,7 @@
 
 		$.ajax({
 			type: "get", 
-			url: "ConversationServlet", 
+			url: "/FirstDraft/ConversationServlet", 
 			data: "modalPosts="+modalName, 
 			success: function(data) {
 
@@ -202,10 +202,11 @@
 
 		$.ajax({
 			type: "get", 
-			url: "ListingsServlet", 
+			url: "/FirstDraft/ListingsServlet", 
 			data: "type="+type, 
+                        dataType: 'html',
 			success: function(data) {
-
+                                alert(data);
 				data = $.parseJSON(data);
 				console.log(data);
 				$.each(data, function(i, v) {
@@ -233,7 +234,10 @@
 				});
 				
 				//$('#listings').trigger('create');
-			}
+			},
+                        error: function(data){
+                            alert("I BORKE");
+                        }
 		});
 
 	}

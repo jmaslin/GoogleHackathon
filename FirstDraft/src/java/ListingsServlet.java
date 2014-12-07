@@ -24,13 +24,17 @@ public class ListingsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
+        System.out.println("0");
         String type = req.getParameter("type");
+        System.out.println(type);
         Alg.AlgUtil.GRP.createUser("name", "", "");
+        System.out.println("2");
          User origin = Alg.AlgUtil.GRP.getUser("name");
-            Alg.AlgUtil.GRP.addGroup("hello", origin , new ArrayList<String>(), new ArrayList<String>(), type);
-        
-        String json = Alg.AlgUtil.GRP.getGroupsByTypeJson(type);
-        
+         System.out.println("3");
+            Alg.AlgUtil.GRP.addGroup("hello", origin , new ArrayList<String>(), new ArrayList<String>(), "shops");
+        System.out.println("4");
+        String json = Alg.AlgUtil.GRP.getGroupsByTypeJson("shops");
+        System.out.println("5");
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
         res.getWriter().write(json);

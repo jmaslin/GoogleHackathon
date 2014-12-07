@@ -96,8 +96,8 @@ public class MatchServlet extends HttpServlet {
         }
             
         //    System.out.println(Alg.AlgUtil.ALG.list.get(0).size());
-            res.sendRedirect(res.encodeRedirectURL("index.html"));
-
+          //  res.sendRedirect(res.encodeRedirectURL("index.html"));
+      //  res.sendRedirect("ListingsServlet");
     }
     public void email(String number, String email, String name, String keyword){
         final String username = "tradersofstuff@gmail.com";

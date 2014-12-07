@@ -8,6 +8,18 @@
         <servlet-name>GroupServlet</servlet-name>
         <servlet-class>GroupServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValueServlet</servlet-name>
+        <servlet-class>ValueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConversationServlet</servlet-name>
+        <servlet-class>ConversationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListingsServlet</servlet-name>
+        <servlet-class>ListingsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MatchServlet</servlet-name>
         <url-pattern>/MatchServlet</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>GroupServlet</servlet-name>
         <url-pattern>/GroupServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValueServlet</servlet-name>
+        <url-pattern>/ValueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConversationServlet</servlet-name>
+        <url-pattern>/ConversationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListingsServlet</servlet-name>
+        <url-pattern>/ListingsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
