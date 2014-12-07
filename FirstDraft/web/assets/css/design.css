@@ -6,7 +6,27 @@
 }
 
 .title small {
-	font-size: 0.4em;
+	font-size: 0.35em;
+}
+
+#subtitle {
+	line-height: 50%;
+	font-size: 3em;
+	/*padding-top: -px;*/
+}
+
+#titleBtn {
+	width: 100%;
+}
+
+#titleBtn > h1 > a {
+	font-family: 'Bitter', serif;
+	font-size: 1.35em;	
+	color: white;
+}
+
+.slogan {
+	display: inline-block;
 }
 
 #top {
@@ -68,4 +88,9 @@ input[type=checkbox] {
 	width: 100%;
 	white-space: normal;
 	font-size: 1em;
+}
+
+#homeLogoBtn a {
+	color: white;
+	width: 100%;
 }
