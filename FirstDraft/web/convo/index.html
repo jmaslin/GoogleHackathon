@@ -19,29 +19,29 @@
 
     <!-- FONTS -->
     <link href='http://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro|Ubuntu\Bitter' rel='stylesheet' type='text/css'>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+   
+  <!--   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
 
 	</head>
 	<body>	
 
 		<div class="container">
 
-			<div class="row">
+			<!-- <div class="row"> -->
 				<div id="sidebar" class="col-sm-3">
 					<div class="row">
-						<div class=" input-lg">
-							<input type="text" class="form-control" id="search" autocomplete="off" placeholder="Search">
-							<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-						</div>
+						<input type="text" class="form-control" id="search" autocomplete="off" placeholder="Search">
+		<!-- 					<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span> -->
 					</div>
 					<br />
-					<div class="row">
-						<h3>Popular Tags</h3>
+					<div id="views" class="row">
+						<button id="social" class="btn btn-success btn-lg">Group Chats</button>
+						<button id="shop" class="btn btn-primary btn-lg">Shop Views</button>
 					</div>
 				</div>
-				<div id="main" class="col-sm-7 col-sm-offset-1"> <!-- MAIN PAGE CONTENT -->
+				<div id="main" class="col-sm-8 col-sm-offset-1"> <!-- MAIN PAGE CONTENT -->
 					<div class="row"> <!-- Page Heading -->
-						<h2 class="title">The Convo Bay</h2>
+						<h2 id="pageViewTitle" class="title">The Convo Bay</h2>
 						<hr />
 					</div>
 					<div id="listings" class="row"> <!-- Start Listings -->
@@ -54,26 +54,44 @@
 						</div> -->
 					</div> <!-- End Listings -->
 				</div> <!-- END MAIN PAGE CONTENT -->
-			</div>
+			<!-- </div> -->
 
 		</div>
-		
+
 	</body>
 </html>
 
 <!-- MODAL MAIN -->
 <div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Close</span><span class="sr-only"></span></button>
         <h4 class="modal-title" id="chatModal">Chat</h4>
+        <small><strong>Tags: </strong><span id="modal-tags"></span></small>
       </div>
       <div class="modal-body">
-        ...
+       	<div id="modal-posts">
+
+       	</div>
+       	<div class="row">
+       		<div class="col-sm-8 pull-right">
+		       	<form class="form-inline " id="enterPhone">
+		       	  <p>You will need to enter a verification code before completing this action.</p>
+		       		<div class="form-group">
+		       			<input type="text" id="phoneNum" class="form-control" autocomplete="off" placeholder="Phone Number">
+		       			<button id="verifyPhone" class="btn btn-info pull-right">Verify</button>
+		       		</div>
+	       		</form>
+	       	</div>
+       	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      	<div id="modal-phone-buttons">
+	     	  <button id="join" class="btn btn-primary"></button>
+		  		<button id="leave" class="btn btn-danger"></button>
+	  		</div>
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -81,20 +99,86 @@
 
 <script type="text/javascript">
 	
+	var tagsList = new Array();
+
 	$( document ).ready(function() {
-			
-		getListings();
+		
+		$('#listings').fadeTo(0, 0, function() {
+			getListings('convos');	
+		})
+		
+		$('#listings').delay(200).fadeTo(800, 1);
+
+	});
+
+	// REQUESTING OUR LISTINGS FOR PAGE 
+	$('#views #social').on('click', function() {
+		$('#listings').fadeTo(500, 0, function() {
+			$('#listings').empty();
+			getListings('convos');
+			$('#listings').fadeTo(500, 1);
+		});
+		$('#pageViewTitle').fadeToggle(500, function() {
+			$('#pageViewTitle').html("The Convo Bay");
+			$('#pageViewTitle').fadeToggle(500);
+		});
+	});
+	$('#views #shop').on('click', function() {
+		$('#listings').fadeTo(500, 0, function() {
+			$('#listings').empty();
+			getListings('shops');
+			$('#listings').fadeTo(500, 1);
+		});
+		$('#pageViewTitle').fadeToggle(500, function() {
+			$('#pageViewTitle').html("The Shop View");
+			$('#pageViewTitle').fadeToggle(500);
+		});		
 	});
 
 	$('#chatModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget) // Button that triggered the modal
-	  var chatName = button.data('modal-name') // Extract info from data-* attributes
+	  var modalName = button.data('modal-name') // Extract info from data-* attributes
+	  var modalTags = button.data('modal-tags')
+	  var modalType = button.data('modal-type')
+
+		$('#enterPhone').fadeTo(0, 0);
 	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  var modal = $(this)
-	  modal.find('.modal-title').text('Chat: '+chatName)
-	  // modal.find('.modal-body input').val(recipient)
-	})
+	  modal.find('.modal-title').html('<h3>'+modalName+' <small>Window</small></h3>')
+	  modal.find('#modal-tags').html(modalTags)
+	 	if (modalType == "convo") {
+	  	modal.find('.modal-footer #join').html("Join")
+	 	  modal.find('.modal-footer #leave').html("Leave")
+	  }
+	  else if (modalType == "shops") {
+	  	modal.find('.modal-footer #join').html("Subscribe")
+	 	  modal.find('.modal-footer #leave').html("Unsubscribe")
+	  }
+
+	  // getConversation(modalName); 
+	});
+
+	function getConversation(modelName) {
+
+		$.ajax({
+			type: "get", 
+			url: "", 
+			data: "modalPosts="+modalName, 
+			success: function(data) {
+
+				data = $.parseJSON(data);
+
+				$.each(data, function(i, v) {
+
+					post = ""; // TODO: PARSE DATA, GET EACH POST (DATE. PERSON, TEXT)
+
+					$('.modal #chatModal #modal-posts').append(post);
+				});
+			}
+		});
+
+	}
 
 	function getListings(type) {
 
@@ -108,11 +192,19 @@
 				console.log(data);
 				$.each(data, function(i, v) {
 
+					var tags = v.tags.join(", ");
+					for (x=0; x<v.tags.length; x++) {
+						if ($(document).find( $('span').html(v.tags[x] )) > 0) {
+							console.log("TEST");
+						}
+						// console.log(v.tags[x]);
+					}
+
 					var listing = ('\
 						<div id="'+i+'" class="chatGroup col-sm-3 col-xs-4" tags="'+v.tags+'">\
 							<a href="chat#'+i+'" class="chatExpand imageLink">\
-							<img class="img img-responsive img-thumbnail" src="../assets/img/person.gif">\
-							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#chatModal" data-modal-name="'+v.name+'">'+v.name+'</button>\
+							<img class="img img-responsive img-thumbnail" src="http://placehold.it/150x100">\
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#chatModal" data-modal-name="'+v.name+'" data-modal-tags="'+tags+'" data-modal-type="'+v.type+'">'+v.name+'</button>\
 						</div>\
 					');
 					$('#listings').append(listing);
@@ -121,6 +213,23 @@
 				//$('#listings').trigger('create');
 			}
 		});
+
+	}
+
+	$('#modal-phone-buttons').on('click', function() {
+		console.log("g");
+		$('#enterPhone').fadeTo(500, 1);
+	});
+
+	function sendPhoneRequest(phone, name, action) {
+
+		$.ajax({
+			type: "post", 
+
+		});
+	}
+
+	function valiatePhoneRequest() {
 
 	}
 

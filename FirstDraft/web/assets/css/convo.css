@@ -9,7 +9,7 @@ body {
 #sidebar, #main { /* Testing */
 	text-align: center;
 	padding-top: 15px;
-	border: 1px solid black;
+	/*border: 1px solid black;*/
 }
 
 #sidebar {
@@ -40,3 +40,18 @@ body {
 	text-decoration: none;
 }
 
+/* VIEWS */
+#views button {
+	width: 100%;
+	margin-bottom: 10px;
+	white-space: normal;
+
+}
+
+#modal-phone-buttons {
+	display: inline-block;
+}
+
+#enterPhone {
+	text-align: right;
+}

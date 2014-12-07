@@ -1,43 +1,87 @@
 <?php
-	
+
+if ($_GET['type'] == "convos") {
 	$groups = array(
 		array(
-			"name" => "math", 
+			"name" => "lolsci", 
 			"creator" => "name",
+			"type" => "convo",
 			"members" => "Bob",
-			"tags" => "group, hi"
+			"tags" => array("one", "two", "three")
 		),
 		array(
 			"name" => "trade", 
 			"creator" => "lols",
-			"members" => "Bob",
-			"tags" => "group, hi"
+			"type" => "convo",
+			"tags" => array("one", "two", "three")
 		),
 		array(
 			"name" => "store", 
 			"creator" => "name",
-			"members" => "Bob",
-			"tags" => "group, hi"
+			"type" => "convo",
+			"tags" => array("one", "two", "three")
 		),
 		array(
 			"name" => "mcdonalds", 
 			"creator" => "lols",
-			"members" => "Bob",
-			"tags" => "group, hi"
+			"type" => "convo",
+			"tags" => array("one", "two", "three")
 		),
 		array(
-			"name" => "police", 
+			"name" => "police-watch", 
 			"creator" => "name",
-			"members" => "Bob",
-			"tags" => "group, hi"
+			"type" => "convo",
+			"tags" => array("one", "two", "three")
 		),
 		array(
-			"name" => "watch", 
+			"name" => "government-news", 
 			"creator" => "lols",
-			"members" => "Bob",
-			"tags" => "group, hi"
+			"type" => "convo",
+			"tags" => array("one", "two", "three")
+		),
+		array(
+			"name" => "commuity", 
+			"creator" => "lols",
+			"type" => "convo",
+			"tags" => array("one", "two", "three")
 		)
 	);
+}
+
+if ($_GET['type'] == "shops") {
+	$groups = array(
+		array(
+			"name" => "SHOP1", 
+			"creator" => "name",
+			"type" => "shops",
+			"tags" => array("one", "two", "three")
+		),
+		array(
+			"name" => "SHOP12", 
+			"creator" => "lols",
+			"type" => "shops",
+			"tags" => array("one", "two", "three")
+		),
+		array(
+			"name" => "SHOP134", 
+			"creator" => "name",
+			"type" => "shops",
+			"tags" => array("one", "two", "three")
+		),
+		array(
+			"name" => "mcdonalds", 
+			"creator" => "lols",
+			"type" => "shops",
+			"tags" => array("one", "two", "three")
+		),
+		array(
+			"name" => "lolshops", 
+			"creator" => "name",
+			"type" => "shops",
+			"tags" => array("one", "two", "three")
+		)
+	);	
+}
 
 	echo json_encode($groups);
 
