@@ -87,6 +87,7 @@ public class MatchServlet extends HttpServlet {
                //sent stuff
                //System.out.println("here");
                email(phone, email, name, request);
+               email(t.getNumber(), t.getEmail(), t.getName(), request);
                System.out.println("MATCH!");
            }
         } catch (InvalidKeyException ex) {
@@ -119,10 +120,12 @@ public class MatchServlet extends HttpServlet {
 		try {
  
 			Message message = new MimeMessage(session);
+
+                        
 			message.setFrom(new InternetAddress("tradersofstuff@gmail.com"));
                         if (number != null){
                            if (!number.equals("")){
-                            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@tmomail.net"));
+                            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@tmomail.net"));
                            // message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@txt.att.net"));
                            // message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@vtext.com"));
                            // message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(number+"@messaging.sprintpcs.com"));
@@ -135,7 +138,8 @@ public class MatchServlet extends HttpServlet {
                             }
                         }
                         message.setSubject("Match found: "+keyword);
-			message.setText("Name"+name);
+			message.setText("Name: "+name);
+                       
                         
 			Transport.send(message);
  

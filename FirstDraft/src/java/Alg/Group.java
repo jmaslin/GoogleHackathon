@@ -5,6 +5,8 @@ package Alg;
 
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
 /**
  * @author Cam
  *
@@ -13,22 +15,48 @@ import java.util.ArrayList;
 
 public class Group {
 
-	private User theArchitect;
-	private String groupName;
-	private ArrayList<User> usersList;
-	private ArrayList<String> tags;
-	
+	protected User theArchitect;
+	protected String groupName;
+        //store or group
+        private String type;
+
+
+	protected ArrayList<User> usersList;
+	protected ArrayList<String> tags;
+	protected ArrayList<String> value;
+        
+        
 	/**
 	 * @param groupName Name of the group
 	 * @param theArchitect User that created the group
 	 * @param tags Tags associated with the group
+         * @param chat chat history
 	 */
-	public Group(String groupName, User theArchitect, ArrayList<String> tags){
+	public Group(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> value, String type){
 		this.groupName = groupName;
 		this.theArchitect = theArchitect;
 		this.tags = tags;
+       this.value = value;
+       this.type = type;
 	}
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+    public void sendValue(String name, String message){
+    	value.add(name + ": " + message);
+    }
+        
+        
+    public ArrayList<String> getValues(){
+    	return value;
+    }
+        
 	/**
 	 * @param tag Tag to add to the group
 	 */
@@ -56,8 +84,8 @@ public class Group {
 	 * @param name name of the user to add to the group
 	 * @param number number for the user being added to the group
 	 */
-	public void subscribe(String name, String number){
-		User user = new User(name, number);
+	public void subscribe(String name, String number, String email){
+		User user = new User(name, number, email);
 		subscribe(user);
 	}
 	
@@ -84,11 +112,66 @@ public class Group {
 		return groupName;
 	}
 	
+	public String getTagsJson(){
+		return new Gson().toJson(tags);
+	}
+	
+	public String getValueJson(){
+		return new Gson().toJson(value);
+	}
+	
+	public String getValueString(){
+		String str = "";
+		for(String string: value){
+			str += string;
+			str += " ";
+		}
+		return str;
+	}
+	
+	public String getNamesJson(){
+		ArrayList<String> names = new ArrayList<String>();
+		for(User user : usersList){
+			names.add(user.getName());
+		}
+		return new Gson().toJson(names);
+	}
+	
+	
+	public String getNumbersJson(){
+		ArrayList<String> numbers = new ArrayList<String>();
+		for(User user : usersList){
+			numbers.add(user.getNumber());
+		}
+		return new Gson().toJson(numbers);
+	}
+	
+	public String getEmailsJson(){
+		ArrayList<String> emails = new ArrayList<String>();
+		for(User user : usersList){
+			emails.add(user.getEmail());
+		}
+		return new Gson().toJson(emails);
+	}
+	
 	/**
 	 * @return returns the list of tags associated with this group
 	 */
 	public ArrayList<String> getTags(){
 		return tags;
 	}
-	
+        
+        public ArrayList<String> getUserNames(){
+            ArrayList<String> userNames = new ArrayList<String>();
+            for (User e : usersList)
+                userNames.add(e.getName());
+            return userNames;
+        }
+        
+        public ArrayList<User> getUsers(){
+            return usersList;
+        }
+	public User getOwner(){
+            return theArchitect;
+        }
 }

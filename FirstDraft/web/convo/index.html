@@ -181,7 +181,7 @@
 
 		$.ajax({
 			type: "get", 
-			url: "", 
+			url: "ConversationServlet", 
 			data: "modalPosts="+modalName, 
 			success: function(data) {
 
@@ -202,7 +202,7 @@
 
 		$.ajax({
 			type: "get", 
-			url: "text.php", 
+			url: "ListingsServlet", 
 			data: "type="+type, 
 			success: function(data) {
 
