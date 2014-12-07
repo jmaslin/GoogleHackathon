@@ -11,4 +11,5 @@ package Alg;
  */
 public class AlgUtil {
     public static BackendDriver ALG = new BackendDriver();
+    public static GroupServer GRP = new GroupServer();
 }
