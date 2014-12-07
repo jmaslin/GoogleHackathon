@@ -2,6 +2,10 @@
  * MARKET CSS CLASS
 */
 
+body {
+	font-size: 16px;
+}
+
 #sidebar, #main { /* Testing */
 	text-align: center;
 	padding-top: 15px;
@@ -13,7 +17,15 @@
 }
 
 .chatGroup {
-	font-size: 18px;
+	font-size: 20px;
+	padding-bottom: 20px;
+}
+
+.chatGroup button {
+	width: 100%;
+	font-size: .75em;
+	white-space: normal;
+
 }
 
 .imageLink {
@@ -27,3 +39,4 @@
 .imageLink a:hover {
 	text-decoration: none;
 }
+
