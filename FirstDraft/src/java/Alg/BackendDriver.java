@@ -40,10 +40,10 @@ public class BackendDriver {
 		ComparableRequestQuery rq = new ComparableRequestQuery(type,keyword,coord,name,number,email);
 		ComparableRequestQuery foundQuery = null;
 
-		JsonThesaurus list2 = new JsonThesaurus();
-		ArrayList<String> thes = list2.thesaurus(keyword);
-		
-		thes.add(keyword);
+//		JsonThesaurus list2 = new JsonThesaurus();
+//		ArrayList<String> thes = list2.thesaurus(keyword);
+//		
+//		thes.add(keyword);
 		
 		int id = 0;
 		int other = 1;
@@ -60,12 +60,12 @@ public class BackendDriver {
 				throw new InvalidKeyException();
 		}
 	
-		for(int i = 0; i < thes.size();i++){
-			if(list.get(id).containsKey(thes.get(i))||list.get(other).containsKey(thes.get(i))){
-				keyword = thes.get(i);
-				i = thes.size();
-			}
-		}
+//		for(int i = 0; i < thes.size();i++){
+//			if(list.get(id).containsKey(thes.get(i))||list.get(other).containsKey(thes.get(i))){
+//				keyword = thes.get(i);
+//				i = thes.size();
+//			}
+//		}
 		
 		
 		if(list.get(other).containsKey(keyword)){  //if opposite type is found			
