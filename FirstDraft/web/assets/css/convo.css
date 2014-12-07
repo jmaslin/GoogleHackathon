@@ -8,12 +8,20 @@ body {
 
 #sidebar, #main { /* Testing */
 	text-align: center;
-	padding-top: 15px;
+	padding-top: 45px;
 	/*border: 1px solid black;*/
 }
 
 #sidebar {
 	padding-top: 35px;
+}
+
+#sidebarHeader {
+	width: 100%;
+}
+
+#sidebarHeader a {
+	color: white;
 }
 
 .chatGroup {
@@ -24,7 +32,7 @@ body {
 .chatGroup button {
 	width: 100%;
 	font-size: .75em;
-	white-space: normal;
+	/*white-space: normal;*/
 
 }
 
@@ -40,12 +48,26 @@ body {
 	text-decoration: none;
 }
 
-/* VIEWS */
 #views button {
+	font-size: 1.5em;
 	width: 100%;
 	margin-bottom: 10px;
-	white-space: normal;
+	/*white-space: normal;*/
+}
 
+#pageViewTitle {
+	padding-bottom: -10px;
+}
+
+/* VIEWS */
+#listings {
+
+}
+#listings button {
+	font-size: 0.75em;
+	width: 100%;
+	margin-bottom: 10px;
+	/*white-space: normal;*/
 }
 
 #modal-phone-buttons {
