@@ -46,19 +46,38 @@
 					</div>
 					<div id="listings" class="row"> <!-- Start Listings -->
 						<!-- SAMPLE -->
-						<div class="chatGroup col-sm-3 col-xs-4">
-							<a href="#" class="chatExpand imageLink">
+						<!-- <div class="chatGroup col-sm-3 col-xs-4">
+							<a href="chat#24" class="chatExpand imageLink">
 							<img class="img img-responsive img-thumbnail" src="../assets/img/person.gif">
 							<p><strong><span class="chatGroupName">Group Name</span></strong></p>
 							</a>
-						</div>
+						</div> -->
 					</div> <!-- End Listings -->
 				</div> <!-- END MAIN PAGE CONTENT -->
 			</div>
 
 		</div>
+		
 	</body>
 </html>
+
+<!-- MODAL MAIN -->
+<div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="chatModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="chatModal">Chat</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
 	
@@ -66,6 +85,16 @@
 			
 		getListings();
 	});
+
+	$('#chatModal').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var chatName = button.data('modal-name') // Extract info from data-* attributes
+	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	  var modal = $(this)
+	  modal.find('.modal-title').text('Chat: '+chatName)
+	  // modal.find('.modal-body input').val(recipient)
+	})
 
 	function getListings(type) {
 
@@ -78,13 +107,31 @@
 				data = $.parseJSON(data);
 				console.log(data);
 				$.each(data, function(i, v) {
-					console.log(v.name);
-				});
 
-				// console.log(data);
+					var listing = ('\
+						<div id="'+i+'" class="chatGroup col-sm-3 col-xs-4" tags="'+v.tags+'">\
+							<a href="chat#'+i+'" class="chatExpand imageLink">\
+							<img class="img img-responsive img-thumbnail" src="../assets/img/person.gif">\
+							<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#chatModal" data-modal-name="'+v.name+'">'+v.name+'</button>\
+						</div>\
+					');
+					$('#listings').append(listing);
+				});
+				
+				//$('#listings').trigger('create');
 			}
 		});
 
+	}
+
+	$( document ).on('click', '.chatExpand', function(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		launchChat($(this).parent().attr('id'));
+	});
+
+	function launchChat(id) {
+		console.log(id);
 	}
 
 </script>
