@@ -19,6 +19,10 @@ public class Group {
 	protected String groupName;
         //store or group
         private String type;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/STORE-CLASS
 	protected ArrayList<User> usersList;
 	protected ArrayList<String> tags;
 	protected ArrayList<String> value;
@@ -30,11 +34,20 @@ public class Group {
 	 * @param tags Tags associated with the group
          * @param chat chat history
 	 */
-	public Group(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> value){
+	public Group(String groupName, User theArchitect, ArrayList<String> tags, ArrayList<String> value, String type){
 		this.groupName = groupName;
 		this.theArchitect = theArchitect;
 		this.tags = tags;
        this.value = value;
+       this.type = type;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
     public void sendValue(String name, String message){
