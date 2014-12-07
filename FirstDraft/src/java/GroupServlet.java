@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Alg.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -28,14 +29,14 @@ public class GroupServlet extends HttpServlet {
         if (!Alg.AlgUtil.GRP.getUserList().keySet().contains(name))
             Alg.AlgUtil.GRP.createUser(name, number, "");
         
-        
+        User temp = Alg.AlgUtil.GRP.getUser(name);
         
         //join
         if (action.equals("join")){
-            Alg.AlgUtil.GRP.getGroup(groupName)
+            Alg.AlgUtil.GRP.getGroup(groupName).subscribe(temp);
         }
         //leave
-        
+//        if (action.)
         //send
     }
 

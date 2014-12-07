@@ -115,7 +115,7 @@
 	var shopsTitle = "The Shop View";
 
 	$( document ).ready(function() {
-		
+		getConversation("hello");
 		// $('#listings').fadeTo(0, 0, function() {
 		// })
 		getListings('convos');	
@@ -187,17 +187,17 @@
 	});
 
 	function getConversation(modelName) {
-
+        
 		$.ajax({
 			type: "get", 
 			url: "/FirstDraft/ConversationServlet", 
-			data: "modalPosts="+modalName, 
+			data: "modelPosts="+modelName, 
 			success: function(data) {
 
 				data = $.parseJSON(data);
 
 				$.each(data, function(i, v) {
-
+                                        console.log(i+" "+v);
 					post = ""; // TODO: PARSE DATA, GET EACH POST (DATE. PERSON, TEXT)
 
 					$('.modal #chatModal #modal-posts').append(post);
@@ -213,7 +213,7 @@
 			type: "get", 
 			url: "/FirstDraft/ListingsServlet", 
 			data: "type="+type, 
-                        dataType: 'html',
+      dataType: 'html',
 			success: function(data) {
                                 //alert(data);
 				data = $.parseJSON(data);
@@ -244,9 +244,10 @@
 				
 				//$('#listings').trigger('create');
 			},
-                        error: function(data){
-                            alert("I BORKE");
-                        }
+    	error: function(data){
+     		console.log("Failed to grab.");
+     	}
+                        
 		});
 
 	}
