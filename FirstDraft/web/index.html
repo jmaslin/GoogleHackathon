@@ -48,7 +48,7 @@
           <form id="submitReq">
               <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" name="userName" id="userName" autocomplete="off" placeholder="Name">
+                <input type="text" class="form-control" name="userName" id="userName" autocomplete="off" placeholder="Preferred Name">
               </div>
   					  <div class="form-group">
 <!--     						<label for="purpose">Purpose</label>
@@ -65,24 +65,24 @@
               </div> -->
   						<div class="form-group">
   							<label for="request">Request</label>
-  							<input type="text" class="form-control" name="requestType" id="requestType" autocomplete="off" placeholder="Item or Service">
+  							<input type="text" class="form-control" name="requestType" id="requestType" autocomplete="off" placeholder="[Quantity] Item or Service">
   						</div>
   						<div class="form-group">
   							<label for="location">Location</label>
   							<input type="text" class="form-control" name="location" id="location" autocomplete="off" placeholder="Where are you!">
   						</div>
-  						<label for="contact">Contact Method(s)</label>
-  						<div class="input-group">
-  							<span class="input-group-addon">
-  								<input id="emailCheck" autocomplete="off" type="checkbox">
-  							</span>
-  							<input type="text" class="form-control" name="contactEmail" id="contactEmail" autocomplete="off" placeholder="Email Address">
+  						<label for="contact">Contact Information</label>
+  						<div class="form-group">
+  							<!-- <span class="input-group-addon"> -->
+  								<!-- <input id="emailCheck" autocomplete="off" type="checkbox"> -->
+  							<!-- </span> -->
+  							<input type="text" class="form-control contact-area" name="contactEmail" id="contactEmail" autocomplete="off" placeholder="Email Address">
   						</div>
-  						<div class="input-group">
-  							<span class="input-group-addon">
-  								<input id="phoneCheck" autocomplete="off" type="checkbox">
-  							</span>
-  							<input type="text" class="form-control" name="contactPhone" id="contactPhone" autocomplete="off" placeholder="Phone Number">
+  						<div class="form-group">
+  							<!-- <span class="input-group-addon"> -->
+  								<!-- <input id="phoneCheck" autocomplete="off" type="checkbox"> -->
+  							<!-- </span> -->
+  							<input type="text" class="form-control contact-area" name="contactPhone" id="contactPhone" autocomplete="off" placeholder="Phone Number">
   						</div>
   						<!-- TODO: Make this better. All of it. -->
   						<br>
@@ -125,17 +125,20 @@
       $('.expandBtn').not(this).fadeTo(500, 0.4);
       $(this).fadeTo(500, 0.85);
 
-      $('form#submitReq label[for=request]').html("Sell Something");
+      $('form#submitReq label[for=request]').html('<button class="btn btn-success btn-lg"><strong>Sell</strong></button> Something');
       option = 2;
 
       if ($(this).attr('id') == "buyOption") {
         option = 1;
-        $('form#submitReq label[for=request]').html("Buy Something");
+        $('form#submitReq label[for=request]').html('<button class="btn btn-primary btn-lg"><strong>Buy</strong></button> Something');
       }
-
 
       $('form#submitReq').fadeIn("slow");
     }); 
+
+    $('.contact-area').on("click", function(e) {
+      $(this).parent().fadeTo(250, 1);
+    });
 
   	$('#submitRequest').on("click", function(e) {
 			e.preventDefault(); // Got to error validates the datas firsts
